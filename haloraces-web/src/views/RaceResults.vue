@@ -32,7 +32,7 @@
   
   <script setup lang="ts">
   import { relayEvents } from '../data/relayEvents'
-  import type { Game, PlayerResult, TeamName } from '../data/types'
+  import type { Game, PlayerResult, TeamName } from '../data/relayEvents'
   
   function playersForGame(playerResults: PlayerResult[], game: Game): PlayerResult[] {
     return playerResults.filter(player => player.playedGames.includes(game))
