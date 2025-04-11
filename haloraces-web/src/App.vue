@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import UserList from './components/UserList.vue'
 </script>
 
 <template>
+  <div>
+    <router-link to="/home">
+      <button>Go to UserList</button>
+    </router-link>
+    <router-link to="/raceResults">
+      <button>Go to Results</button>
+    </router-link>
 
-  <UserList/>
-  
+    <router-view />
+  </div>
 </template>
-
 

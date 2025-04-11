@@ -1,6 +1,29 @@
 interface User {
     name: string;
 }
+
+enum Game {
+    HaloCE = "Halo: Combat Evolved",
+    Halo2 = "Halo 2",
+    Halo3 = "Halo 3",
+    HaloODST = "Halo ODST",
+    HaloReach = "Halo Reach",
+    Halo4 = "Halo 4",
+    Halo5 = "Halo 5",
+    HaloInfinite = "Halo Infinite"
+}
+enum TeamName {
+    Green,
+    Gold,
+    Red,
+    Blue
+}
+enum Difficulty {
+    Easy,
+    Legendary
+}
+
+
 //Template data
 export const users: User[] = [
     { name: "BatChat"},
