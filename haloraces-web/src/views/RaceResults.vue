@@ -1,34 +1,42 @@
 <template>
-    <div class="race-results">
-      <h1 class="title">Race Results</h1>
-      <div
-        v-for="event in relayEvents"
-        :key="event.year"
-        class="event-card"
-      >
-        <h2>{{ event.year }} - {{ event.difficulty }}</h2>
-        <p class="winner">🏆 Winning Team: <span :class="teamClass(event.winningTeam)">{{ event.winningTeam }}</span></p>
-  
-        <div class="games-list">
-          <h3>Games Played:</h3>
-          <ul>
-            <li v-for="game in event.playedGames" :key="game">
-              <strong>{{ game }}</strong>
-              <ul class="players">
-                <li
-                  v-for="player in playersForGame(event.playerResults, game)"
-                  :key="player.name + game"
-                  :class="['player-item', teamClass(player.team)]"
-                >
-                  {{ player.name }} ({{ player.team }}) <span v-if="player.win">✔</span>
-                </li>
-              </ul>
-            </li>
-          </ul>
+  <div class="race-results">
+    <h1 class="title">Race Results</h1>
+    <div
+      v-for="event in relayEvents"
+      :key="event.year"
+      class="event-card"
+    >
+      <h2>{{ event.year }} - {{ event.difficulty }}</h2>
+      <p class="winner">
+        🏆 Winning Team:
+        <span :class="teamClass(event.winningTeam)">{{ event.winningTeam }}</span>
+      </p>
+
+      <div class="games-list">
+        <h3>Games Played:</h3>
+        <div class="games-horizontal">
+          <div
+            class="game"
+            v-for="game in event.playedGames"
+            :key="game"
+          >
+            <strong>{{ game }}</strong>
+            <div class="players">
+              <div
+                v-for="player in playersForGame(event.playerResults, game)"
+                :key="player.name + game"
+                :class="['player-item', teamClass(player.team)]"
+              >
+                {{ player.name }} ({{ player.team }}) <span v-if="player.win">✔</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
+
   
   <script setup lang="ts">
   import { relayEvents } from '../data/relayEvents'
@@ -75,6 +83,23 @@
   font-weight: bold;
   margin: 0.5rem 0 1rem;
 }
+
+.games-horizontal {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.game {
+  border: 1px solid #1f1e1e;
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-width: 200px;
+  flex-shrink: 0;
+  background: #1a1a1a;
+}
+
 
 .games-list {
   margin-top: 1rem;
