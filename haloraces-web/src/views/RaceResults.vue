@@ -6,7 +6,13 @@
       :key="event.year"
       class="event-card"
     >
-      <h2>{{ event.year }} - {{ event.difficulty }}</h2>
+      <h2>{{ 
+      new Date(event.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
+    }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+       }} - {{ event.difficulty }}</h2>
       <p class="winner">
         🏆 Winning Team:
         <span :class="teamClass(event.winningTeam)">{{ event.winningTeam }}</span>

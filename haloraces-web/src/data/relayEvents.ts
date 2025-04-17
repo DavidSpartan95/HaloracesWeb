@@ -34,6 +34,7 @@ export enum Game {
   
   export interface RelayEvent {
     year: number
+    date: Date
     difficulty: Difficulty
     playedGames: Game[]
     winningTeam: TeamName
@@ -44,6 +45,7 @@ export enum Game {
   export const relayEvents: RelayEvent[] = [
       {
           year: 2014,
+          date: new Date("2014-11-22"),
           difficulty: Difficulty.Legendary,
           playedGames: [Game.HaloCE, Game.Halo2, Game.Halo3],
           winningTeam: TeamName.Green,
@@ -94,10 +96,11 @@ export enum Game {
                   win: false,
                   playedGames: [Game.Halo3]
               },
-          ],
+          ]
       },
       {
           year: 2015,
+          date: new Date("2015-10-25"),
           difficulty: Difficulty.Easy,
           playedGames: [Game.HaloReach,Game.HaloCE,Game.Halo2,Game.Halo3,Game.HaloODST,Game.Halo4],
           winningTeam: TeamName.Green,
@@ -227,5 +230,140 @@ export enum Game {
                   playedGames: [Game.Halo4]
               },
           ]
-      }
+      },
+      {
+          year: 2016,
+          date: new Date("2016-10-29"),
+          difficulty: Difficulty.Easy,
+          playedGames: [],
+          winningTeam: TeamName.Green,
+          teamResults: [],
+          playerResults: []
+      },
+      {
+        year: 2017,
+        date :new Date("2017-11-05"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2018,
+        date:new Date("2018-12-01"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2019,
+        date : new Date("2019-10-12"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2020,
+        date: new Date("2020-01-04"),
+        difficulty: Difficulty.Legendary,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2020,
+        date: new Date("2020-06-28"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Gold,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2021,
+        date: new Date("2021-01-09"),
+        difficulty: Difficulty.Legendary,
+        playedGames: [],
+        winningTeam: TeamName.Green,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2021,
+        date: new Date("2021-06-28"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Gold,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2021,
+        date: new Date("2021-11-27"),
+        difficulty: Difficulty.Legendary,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2022,
+        date: new Date("2022-06-25"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Gold,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2022,
+        date: new Date("2022-12-03"),
+        difficulty: Difficulty.Legendary,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2023,
+        date: new Date("2023-07-01"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Blue,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2023,
+        date: new Date("2023-11-18"),
+        difficulty: Difficulty.Legendary,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2024,
+        date: new Date("2024-07-13"),
+        difficulty: Difficulty.Easy,
+        playedGames: [],
+        winningTeam: TeamName.Red,
+        teamResults: [],
+        playerResults: []
+    },
+    {
+        year: 2024,
+        date: new Date("2024-12-07"),
+        difficulty: Difficulty.Legendary,
+        playedGames: [],
+        winningTeam: TeamName.Green,
+        teamResults: [],
+        playerResults: []
+    },
   ]
