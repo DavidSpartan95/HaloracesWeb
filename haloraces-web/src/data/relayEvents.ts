@@ -104,7 +104,7 @@ export const relayEvents: RelayEvent[] = [
         year: 2015,
         date: new Date("2015-10-25"),
         difficulty: Difficulty.Easy,
-        playedGames: [Game.HaloReach, Game.HaloCE, Game.Halo2, Game.Halo3, Game.HaloODST, Game.Halo4],
+        playedGames: [Game.HaloReach, Game.HaloCE, Game.Halo2, Game.Halo3, Game.Halo3ODST, Game.Halo4],
         winningTeam: TeamName.Green,
         teamResults: [
             {
