@@ -143,7 +143,7 @@ export const relayEvents: RelayEvent[] = [
                 name: "Heroic Robb",
                 team: TeamName.Red,
                 win: false,
-                playedGames: [Game.HaloODST]
+                playedGames: [Game.Halo3ODST]
             },
             {
                 name: "Deadrain",
@@ -180,7 +180,7 @@ export const relayEvents: RelayEvent[] = [
                 name: "Davco",
                 team: TeamName.Green,
                 win: true,
-                playedGames: [Game.HaloODST]
+                playedGames: [Game.Halo3ODST]
             },
             {
                 name: "Nagato",
@@ -217,7 +217,7 @@ export const relayEvents: RelayEvent[] = [
                 name: "A Royal Hobo",
                 team: TeamName.Blue,
                 win: false,
-                playedGames: [Game.HaloODST]
+                playedGames: [Game.Halo3ODST]
             },
             {
                 name: "StuffedCrustFTW",
