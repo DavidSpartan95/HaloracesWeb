@@ -1,5 +1,16 @@
 <template>
   <div class="user-list">
+
+    <div class="sort-controls">
+      <label for="sort">Sort by:</label>
+      <select v-model="selectedSort" id="sort">
+        <option value="name">Name (A-Z)</option>
+        <option value="wins">Most Wins</option>
+        <option value="losses">Most Losses</option>
+        <option value="numRaces">Most Races</option>
+      </select>
+    </div>
+
     <ul>
       <li v-for="(user, index) in sortedUsers" :key="index" class="user-item">
         <div class="user-stats">
@@ -22,12 +33,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { users } from '../data/users'; // assume this is an array of user objects
+import { ref, computed } from 'vue';
+import { users } from '../data/users';
+
+const selectedSort = ref('name');
 
 const sortedUsers = computed(() => {
-  return [...users].sort((a, b) => a.name.localeCompare(b.name));
+  const sorted = [...users];
+  switch (selectedSort.value) {
+    case 'wins':
+      return sorted.sort((a, b) => b.wins - a.wins);
+    case 'losses':
+      return sorted.sort((a, b) => b.losses - a.losses);
+    case 'numRaces':
+      return sorted.sort((a, b) => b.numRaces - a.numRaces);
+    default:
+      return sorted.sort((a, b) => a.name.localeCompare(b.name));
+  }
 });
+
 </script>
 
 <style scoped>
@@ -84,5 +108,21 @@ ul {
 
 .game-count {
   margin-right: 1rem;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f1f1f1;
+}
+
+.sort-controls select {
+  background-color: #3a3a3a;
+  color: #f1f1f1;
+  border: 1px solid #555;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
 }
 </style>
