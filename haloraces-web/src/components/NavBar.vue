@@ -7,8 +7,9 @@
                 <div>
                     <img src="../assets/race-icon-modified.png" alt="Logo" height="50" width="50" />
                 </div>
-                <router-link to="/home" class="nav-link">Home</router-link>
-                <router-link to="/raceResults" class="nav-link">Race Results</router-link>
+                <router-link to= home class="nav-link">Home</router-link>
+                <router-link to= runners class="nav-link">Runners</router-link>
+                <router-link to= race-results class="nav-link">Race Results</router-link>
             </div>
         </div>
     </nav>
