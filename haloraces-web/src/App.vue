@@ -1,16 +1,17 @@
 <script setup lang="ts">
+import NavBar from './components/NavBar.vue'
 </script>
 
 <template>
-  <div>
-    <router-link to="/home">
-      <button>Go to UserList</button>
-    </router-link>
-    <router-link to="/raceResults">
-      <button>Go to Results</button>
-    </router-link>
-
+  <div class="app-container">
+    <NavBar />
     <router-view />
   </div>
 </template>
 
+<style scoped>
+.app-container {
+  padding-top: 100px;
+  /* Match or slightly exceed navbar height */
+}
+</style>
