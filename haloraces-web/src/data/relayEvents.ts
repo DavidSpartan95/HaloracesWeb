@@ -609,7 +609,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2021,
-        date: new Date("2021-06-28"),
+        date: new Date("2021-06-05"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
