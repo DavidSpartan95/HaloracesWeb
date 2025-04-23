@@ -75,7 +75,7 @@ export const relayEvents: RelayEvent[] = [
                 playedGames: [Game.Halo2]
             },
             {
-                name: "AlienFlow",
+                name: "Alienflow",
                 team: TeamName.Green,
                 win: true,
                 playedGames: [Game.Halo3]
@@ -134,13 +134,13 @@ export const relayEvents: RelayEvent[] = [
                 playedGames: [Game.HaloCE]
             },
             {
-                name: "HockyFan",
+                name: "Hockeyfan",
                 team: TeamName.Red,
                 win: false,
                 playedGames: [Game.Halo2]
             },
             {
-                name: "Heroic Robb",
+                name: "Legendary Robb",
                 team: TeamName.Red,
                 win: false,
                 playedGames: [Game.Halo3ODST]
@@ -152,7 +152,7 @@ export const relayEvents: RelayEvent[] = [
                 playedGames: [Game.Halo3]
             },
             {
-                name: "Haole Cake",
+                name: "HaoleCake",
                 team: TeamName.Red,
                 win: false,
                 playedGames: [Game.Halo4]
@@ -266,7 +266,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Backflip", team: TeamName.Red, win: false, playedGames: [Game.HaloReach] },
             { name: "Sol", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
             { name: "Reraised", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
-            { name: "Heroic Robb", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Legendary Robb ", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Deadrain", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
             { name: "BadMonsterz", team: TeamName.Red, win: false, playedGames: [Game.Halo4] },
             { name: "Hoshka", team: TeamName.Red, win: false, playedGames: [Game.Halo5] },
@@ -276,7 +276,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "ColdGrunter", team: TeamName.Green, win: true, playedGames: [Game.HaloCE] },
             { name: "Willzorss", team: TeamName.Green, win: true, playedGames: [Game.Halo2] },
             { name: "Nagato", team: TeamName.Green, win: true, playedGames: [Game.Halo3ODST] },
-            { name: "Alienflow/OozyGorilla/NarrowKS", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
+            { name: "Alienflow & OozyGorilla & NarrowKS", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
             { name: "Egg92", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
             { name: "BatChat", team: TeamName.Green, win: true, playedGames: [Game.Halo5] },
 
@@ -285,7 +285,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Savusukka", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "NadeshotsCats", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
             { name: "Davco", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
-            { name: "Hiipfire/StuffedCrustFTW/Fingerquick", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
+            { name: "Hiipfire & StuffedCrustFTW & Fingerquick", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "HaoleCake", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
             { name: "Blarg N Flarg", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
         ],
@@ -331,7 +331,7 @@ export const relayEvents: RelayEvent[] = [
             // Green Team
             { name: "Wolfy", team: TeamName.Green, win: false, playedGames: [Game.HaloReach] },
             { name: "Sub_Whistle", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
-            { name: "DustinEchoes", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
+            { name: "Aster", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
             { name: "Nagato", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
             { name: "bhayward2000", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
             { name: "Egg92", team: TeamName.Green, win: false, playedGames: [Game.Halo4] },
@@ -388,7 +388,7 @@ export const relayEvents: RelayEvent[] = [
             // Green Team
             { name: "Pedrogas", team: TeamName.Green, win: false, playedGames: [Game.HaloReach] },
             { name: "Maxlew", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
-            { name: "DustinEchoes", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
+            { name: "Aster", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
             { name: "welshevo79", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Paradoxxic", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
             { name: "A Royal Hobo", team: TeamName.Green, win: false, playedGames: [Game.Halo4] },
@@ -398,7 +398,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Wolfy", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
             { name: "Chronos", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "AFilthyCasual", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
-            { name: "Heroic Robb", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Legendary Robb", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Harc", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "Skull Kid 2112", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
             { name: "Phobic", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
@@ -437,7 +437,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Jangoosed", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
             { name: "Chronos", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "Drift27", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
-            { name: "Wingman953", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
+            { name: "Wingman", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
             { name: "Paradoxxic", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
             { name: "Egg92", team: TeamName.Red, win: true, playedGames: [Game.Halo4] },
             { name: "Hoshka", team: TeamName.Red, win: true, playedGames: [Game.Halo5] },
@@ -525,7 +525,7 @@ export const relayEvents: RelayEvent[] = [
         playerResults: [
             // Red Team
             { name: "Sparklyness", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
-            { name: "AsterQuasi", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
+            { name: "Aster", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
             { name: "Sorix", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
             { name: "Harc", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Jangoosed", team: TeamName.Red, win: false, playedGames: [Game.HaloReach] },
@@ -547,7 +547,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Sasquatch", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "VyPr", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Mankey", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
-            { name: "EggplantHydra", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
+            { name: "Eggplant", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
             { name: "DavidSpartan95", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
 
             // Gold Team (Winners)
@@ -583,7 +583,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Chynovsky", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
             { name: "BananaBoatKid", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
             { name: "Sorix", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
-            { name: "Wingman953", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Wingman", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Two EEzy", team: TeamName.Red, win: false, playedGames: [Game.HaloReach] },
             { name: "Cordiaxiz", team: TeamName.Red, win: false, playedGames: [Game.Halo4] },
             { name: "DavidSpartan95", team: TeamName.Red, win: false, playedGames: [Game.Halo5] },
@@ -594,7 +594,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "g3lk_jr", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
             { name: "Legendary Robb", team: TeamName.Green, win: true, playedGames: [Game.Halo3ODST] },
             { name: "Zephrike", team: TeamName.Green, win: true, playedGames: [Game.HaloReach] },
-            { name: "EggplantHydra", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
+            { name: "Eggplant", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
             { name: "Distro", team: TeamName.Green, win: true, playedGames: [Game.Halo5] },
 
             // Blue Team
@@ -653,7 +653,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Maxlew", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
             { name: "Temp", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
             { name: "Mourie", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
-            { name: "Wingman953", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Wingman", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Zephrike", team: TeamName.Green, win: false, playedGames: [Game.HaloReach] },
             { name: "Jon and Pon", team: TeamName.Green, win: false, playedGames: [Game.Halo4] },
             { name: "DavidSpartan95", team: TeamName.Green, win: false, playedGames: [Game.Halo5] },
@@ -701,7 +701,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "B34RFAC3", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "ibigblue", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "Sorix", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
-            { name: "Wingman953", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
+            { name: "Wingman", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
             { name: "Chronos", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
             { name: "Eggplant", team: TeamName.Red, win: true, playedGames: [Game.Halo4] },
             { name: "Phobic", team: TeamName.Red, win: true, playedGames: [Game.Halo5] },
@@ -748,7 +748,7 @@ export const relayEvents: RelayEvent[] = [
         ],
         playerResults: [
             // Red Team
-            { name: "Nervy", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
+            { name: "NervyDestroyer", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
             { name: "Sleek", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
             { name: "yeVcM", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
             { name: "Chronos", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
@@ -769,7 +769,7 @@ export const relayEvents: RelayEvent[] = [
 
             // Blue Team
             { name: "Helpless", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
-            { name: "AsterVeles", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
+            { name: "Aster", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
             { name: "Sasquatch", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "Penguin", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Zephrike", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
@@ -778,7 +778,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "RileyRunsIt", team: TeamName.Blue, win: false, playedGames: [Game.HaloInfinite] },
 
             // Gold Team (Winners)
-            { name: "Sloth", team: TeamName.Gold, win: false, playedGames: [Game.HaloCE] },
+            { name: "SlothSG", team: TeamName.Gold, win: false, playedGames: [Game.HaloCE] },
             { name: "Maxlew", team: TeamName.Gold, win: false, playedGames: [Game.Halo2] },
             { name: "Zoo", team: TeamName.Gold, win: false, playedGames: [Game.Halo3] },
             { name: "Skilledgames", team: TeamName.Gold, win: false, playedGames: [Game.Halo3ODST] },
@@ -810,11 +810,11 @@ export const relayEvents: RelayEvent[] = [
         ],
         playerResults: [
             // Red Team (Winners)
-            { name: "Sloth", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
+            { name: "SlothSG", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "Voltroneon", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "g3lk_jr", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
             { name: "yeVcM", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
-            { name: "Two_EEzy", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
+            { name: "Two EEzy", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
             { name: "Eggplant", team: TeamName.Red, win: true, playedGames: [Game.Halo4] },
             { name: "Phobic", team: TeamName.Red, win: true, playedGames: [Game.Halo5] },
             { name: "Lorhey", team: TeamName.Red, win: true, playedGames: [Game.HaloInfinite] },
@@ -830,10 +830,10 @@ export const relayEvents: RelayEvent[] = [
             { name: "Pedrogas", team: TeamName.Green, win: false, playedGames: [Game.HaloInfinite] },
 
             // Blue Team
-            { name: "Nervy", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
+            { name: "NervyDestroyer", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "Sleek", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
             { name: "Sasquatch", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
-            { name: "Wingman953", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Wingman", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Zephrike", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
             { name: "Jon and Pon", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
             { name: "BatChat", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
@@ -862,7 +862,7 @@ export const relayEvents: RelayEvent[] = [
         ],
         playerResults: [
             // Red Team
-            { name: "Nervy", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
+            { name: "NervyDestroyer", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
             { name: "Sleek", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
             { name: "TheIncomeTaxes", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
             { name: "Rhylum", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
@@ -872,7 +872,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Lorhey", team: TeamName.Red, win: false, playedGames: [Game.HaloInfinite] },
 
             // Green Team
-            { name: "Sloth", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
+            { name: "SlothSG", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
             { name: "Skilledgames", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
             { name: "Maxlew", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
             { name: "ArcNaught", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
@@ -916,7 +916,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "DavidSpartan95", team: TeamName.Red, win: true, playedGames: [Game.Halo5] },
             { name: "Sorix", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
             { name: "Voltroneon", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
-            { name: "Nervy", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
+            { name: "NervyDestroyer", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "Chronos", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
 
             // Green Team
@@ -932,7 +932,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "BatChat", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
             { name: "Sasquatch", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "Zoo", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
-            { name: "Sloth", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
+            { name: "SlothSG", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "Seclusive", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
         ],
     },
@@ -958,7 +958,7 @@ export const relayEvents: RelayEvent[] = [
         ],
         playerResults: [
             // Red Team (Winners)
-            { name: "Sloth", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
+            { name: "SlothSG", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "DABLL DO YA", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "Heki", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
             { name: "Rhylum", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
@@ -968,7 +968,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Dyse", team: TeamName.Red, win: true, playedGames: [Game.HaloInfinite] },
 
             // Green Team
-            { name: "Nervy", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
+            { name: "NervyDestroyer", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
             { name: "SlateThelyon", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
             { name: "Alextremo08", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
             { name: "Trouble", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
@@ -1033,7 +1033,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Xero", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
             { name: "SamHR", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "Synyster", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
-            { name: "xTunguzka", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
+            { name: "Tunguzka", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
         ],
     },
 ]

@@ -18,34 +18,40 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
         event.playerResults.forEach((playerResult) => {
             const { name, win, playedGames } = playerResult;
 
-            // Initialize user if not already present
-            if (!users[name]) {
-                users[name] = {
-                    name,
-                    numRaces: 1,
-                    wins: win ? 1 : 0,
-                    losses: win ? 0 : 1,
-                    firstRelayRace: event.date,
-                    gameCount: playedGames.reduce((acc, game) => {
-                        acc[game] = (acc[game] || 0) + 1;
-                        return acc;
-                    }, {} as { [game in Game]?: number }),
-                };
-            } else {
-                // Update existing user's stats
-                users[name].numRaces += 1;
-                users[name].wins += win ? 1 : 0;
-                users[name].losses += win ? 0 : 1;
+            // Split names by "&" and trim spaces
+            const splitNames = name.split("&").map(n => n.trim());
 
-                // Update the game count
-                playedGames.forEach((game) => {
-                    users[name].gameCount[game] = (users[name].gameCount[game] || 0) + 1;
-                });
-            }
+            splitNames.forEach((userName) => {
+                // Initialize user if not already present
+                if (!users[userName]) {
+                    users[userName] = {
+                        name: userName,
+                        numRaces: 1,
+                        wins: win ? 1 : 0,
+                        losses: win ? 0 : 1,
+                        firstRelayRace: event.date,
+                        gameCount: playedGames.reduce((acc, game) => {
+                            acc[game] = (acc[game] || 0) + 1;
+                            return acc;
+                        }, {} as { [game in Game]?: number }),
+                    };
+                } else {
+                    // Update existing user's stats
+                    users[userName].numRaces += 1;
+                    users[userName].wins += win ? 1 : 0;
+                    users[userName].losses += win ? 0 : 1;
+
+                    // Update the game count
+                    playedGames.forEach((game) => {
+                        users[userName].gameCount[game] = (users[userName].gameCount[game] || 0) + 1;
+                    });
+                }
+            });
         });
     });
 
     return Object.values(users);
 }
+
 
 export const users = generateUserStats(relayEvents);
