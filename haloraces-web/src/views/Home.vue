@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <div class="hero-content">
-      <h1>Welcome to <span class="highlight">HaloRaces</span></h1>
+      <h1>Welcome to HaloRaces</h1>
       <p>
         Your official hub for tracking results and stats from community relay events hosted by the 
         <a href="https://haloruns.com" target="_blank" rel="noopener noreferrer">HaloRuns.com</a> community.

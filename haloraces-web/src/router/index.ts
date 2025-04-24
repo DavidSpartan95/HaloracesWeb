@@ -5,29 +5,31 @@ import Runers from '../views/Runners.vue'
 
 const routes = [
   {
-    path: '/',
-    redirect: '/home',
+    path: '/HaloracesWeb',
+    redirect: '/HaloracesWeb/home'
   },
   {
-    path: '/home',
+    path: '/HaloracesWeb/home',
     name: 'Home',
-    component: Home,
+    component: Home
   },
-  {
-    path: '/race-results',
-    name: 'RaceResults',
-    component: RaceResults,
+  { 
+    path: '/HaloracesWeb/race-results', 
+    name: 'RaceResults', 
+    component: RaceResults 
   },
-  {
-    path: '/runners',
-    name: 'Runners',
-    component: Runers,
-  },
+  { 
+    path: '/HaloracesWeb/runners', 
+    name: 'Runners', 
+    component: Runers 
+  }
 ]
 
+
 const router = createRouter({
-  history: createWebHistory(), // No need for base path if you're using a custom domain
+  history: createWebHistory(),
   routes,
 })
 
 export default router
+
