@@ -1,35 +1,33 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory  } from 'vue-router'
 import Home from '../views/Home.vue'
 import RaceResults from '../views/RaceResults.vue'
 import Runers from '../views/Runners.vue'
 
 const routes = [
   {
-    path: '/HaloracesWeb',
-    redirect: '/HaloracesWeb/home'
+    path: '/',
+    redirect: '/home',
   },
   {
-    path: '/HaloracesWeb/home',
+    path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
   },
-  { 
-    path: '/HaloracesWeb/race-results', 
-    name: 'RaceResults', 
-    component: RaceResults 
+  {
+    path: '/race-results',
+    name: 'RaceResults',
+    component: RaceResults,
   },
-  { 
-    path: '/HaloracesWeb/runners', 
-    name: 'Runners', 
-    component: Runers 
-  }
+  {
+    path: '/runners',
+    name: 'Runners',
+    component: Runers,
+  },
 ]
 
-
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(), // No need for base path if you're using a custom domain
   routes,
 })
 
 export default router
-
