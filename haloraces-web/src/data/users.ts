@@ -4,8 +4,8 @@ import {relayEvents} from "./relayEvents";
 export interface User {
     name: string;
     numRaces: number;
-    wins: number;
-    losses: number;
+    wins: string[];
+    losses: string[];
     firstRelayRace: Date;
     gameCount: { [game in Game]?: number }; // Track count per game
 }
@@ -27,8 +27,8 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
                     users[userName] = {
                         name: userName,
                         numRaces: 1,
-                        wins: win ? 1 : 0,
-                        losses: win ? 0 : 1,
+                        wins: win ? [`${event.date}`] : [],
+                        losses: win ? [] : [`${event.date}`],
                         firstRelayRace: event.date,
                         gameCount: playedGames.reduce((acc, game) => {
                             acc[game] = (acc[game] || 0) + 1;
@@ -38,8 +38,8 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
                 } else {
                     // Update existing user's stats
                     users[userName].numRaces += 1;
-                    users[userName].wins += win ? 1 : 0;
-                    users[userName].losses += win ? 0 : 1;
+                    users[userName].wins = win ? [...users[userName].wins, `${event.date}`] : [...users[userName].wins];
+                    users[userName].losses = win ? [...users[userName].losses] : [...users[userName].losses, `${event.date}`];
 
                     // Update the game count
                     playedGames.forEach((game) => {

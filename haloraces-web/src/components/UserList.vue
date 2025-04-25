@@ -15,8 +15,8 @@
       <li v-for="(user, index) in sortedUsers" :key="index" class="user-item">
         <div class="user-stats">
           <span class="user-name">{{ user.name }}</span>
-          <span>W: {{ user.wins }}</span>
-          <span>L: {{ user.losses }}</span>
+          <span>W: {{ user.wins.length }}</span>
+          <span>L: {{ user.losses.length }}</span>
           <span>Total: {{ user.numRaces }}</span>
          <!-- <span class="user-first-race">First Race: {{ user.firstRelayRace.toLocaleDateString() }}</span> -->
         </div>
@@ -42,9 +42,9 @@ const sortedUsers = computed(() => {
   const sorted = [...users];
   switch (selectedSort.value) {
     case 'wins':
-      return sorted.sort((a, b) => b.wins - a.wins);
+      return sorted.sort((a, b) => b.wins.length - a.wins.length);
     case 'losses':
-      return sorted.sort((a, b) => b.losses - a.losses);
+      return sorted.sort((a, b) => b.losses.length - a.losses.length);
     case 'numRaces':
       return sorted.sort((a, b) => b.numRaces - a.numRaces);
     default:
