@@ -1,6 +1,5 @@
 <template>
   <div class="user-list">
-
     <div class="sort-controls">
       <label for="sort">Sort by:</label>
       <select v-model="selectedSort" id="sort">
@@ -12,32 +11,32 @@
     </div>
 
     <ul>
-      <li v-for="(user, index) in sortedUsers" :key="index" class="user-item">
+      <li v-for="(user, index) in sortedUsers" :key="index" class="user-item" @click="showModal(user)">
         <div class="user-stats">
           <span class="user-name">{{ user.name }}</span>
           <span>W: {{ user.wins.length }}</span>
           <span>L: {{ user.losses.length }}</span>
           <span>Total: {{ user.numRaces }}</span>
-         <!-- <span class="user-first-race">First Race: {{ user.firstRelayRace.toLocaleDateString() }}</span> -->
         </div>
-        <!--
-        <div class="user-game-count">
-          <span v-for="(count, game) in user.gameCount" :key="game" class="game-count">
-            {{ game }}: {{ count }} games
-          </span>
-        </div>
-        -->
       </li>
     </ul>
+
+    <UserStatsModal v-if="isModalVisible" :active="selectedUser" @close="closeModal" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import type { User } from '../data/users';
 import { users } from '../data/users';
+import UserStatsModal from './UserStatsModal.vue';
 
+// Reactive properties
 const selectedSort = ref('name');
+const isModalVisible = ref(false);
+const selectedUser = ref<User | null>(null); // Ensure selectedUser is typed correctly as User or null
 
+// Sorted users based on selected sort type
 const sortedUsers = computed(() => {
   const sorted = [...users];
   switch (selectedSort.value) {
@@ -52,6 +51,15 @@ const sortedUsers = computed(() => {
   }
 });
 
+// Modal control methods
+function showModal(user: User) {
+  selectedUser.value = user;
+  isModalVisible.value = true;
+}
+
+function closeModal() {
+  isModalVisible.value = false;
+}
 </script>
 
 <style scoped>
@@ -98,16 +106,6 @@ ul {
   font-size: 1.0rem;
   color: #c4c4c4;
   column-gap: 1rem; /* optional spacing between columns */
-}
-
-.user-game-count {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #a8a8a8; /* Slightly darker gray for game count */
-}
-
-.game-count {
-  margin-right: 1rem;
 }
 
 .sort-controls {
