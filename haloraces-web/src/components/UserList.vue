@@ -36,7 +36,7 @@
 import { ref, computed } from 'vue';
 import { users } from '../data/users';
 
-const selectedSort = ref('name');
+const selectedSort = ref('wins');
 
 const sortedUsers = computed(() => {
   const sorted = [...users];

@@ -417,39 +417,39 @@ export const relayEvents: RelayEvent[] = [
             Game.Halo4,
             Game.Halo5,
         ],
-        winningTeam: TeamName.Red,
+        winningTeam: TeamName.Green,
         teamResults: [
             {
                 name: TeamName.Red,
-                time: "8:54:23",
+                time: "9:30:09",
             },
             {
                 name: TeamName.Green,
-                time: "9:16:15",
+                time: "9:26:51",
             },
             {
                 name: TeamName.Blue,
-                time: "9:36:39",
+                time: "9:30:32",
             },
         ],
         playerResults: [
             // Red Team — Winning Team
-            { name: "Jangoosed", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
-            { name: "Chronos", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
-            { name: "Drift27", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
-            { name: "Wingman", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
-            { name: "Paradoxxic", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
-            { name: "Egg92", team: TeamName.Red, win: true, playedGames: [Game.Halo4] },
-            { name: "Hoshka", team: TeamName.Red, win: true, playedGames: [Game.Halo5] },
+            { name: "Jangoosed", team: TeamName.Red, win: false, playedGames: [Game.HaloReach] },
+            { name: "Chronos", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
+            { name: "Drift27", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
+            { name: "Wingman", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Paradoxxic", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
+            { name: "Egg92", team: TeamName.Red, win: false, playedGames: [Game.Halo4] },
+            { name: "Hoshka", team: TeamName.Red, win: false, playedGames: [Game.Halo5] },
 
             // Green Team
-            { name: "Pedrogas", team: TeamName.Green, win: false, playedGames: [Game.HaloReach] },
-            { name: "Maxlew", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
-            { name: "Harc", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
-            { name: "Adversary", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
-            { name: "Fallenultima", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
-            { name: "Jon and Pon", team: TeamName.Green, win: false, playedGames: [Game.Halo4] },
-            { name: "BatChat", team: TeamName.Green, win: false, playedGames: [Game.Halo5] },
+            { name: "Pedrogas", team: TeamName.Green, win: true, playedGames: [Game.HaloReach] },
+            { name: "Maxlew", team: TeamName.Green, win: true, playedGames: [Game.HaloCE] },
+            { name: "Harc", team: TeamName.Green, win: true, playedGames: [Game.Halo2] },
+            { name: "Adversary", team: TeamName.Green, win: true, playedGames: [Game.Halo3ODST] },
+            { name: "Fallenultima", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
+            { name: "Jon and Pon", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
+            { name: "BatChat", team: TeamName.Green, win: true, playedGames: [Game.Halo5] },
 
             // Blue Team
             { name: "Backflip", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
