@@ -421,7 +421,7 @@ export const relayEvents: RelayEvent[] = [
         teamResults: [
             {
                 name: TeamName.Red,
-                time: "9:30:09",
+                time: "9:32:32",
             },
             {
                 name: TeamName.Green,
@@ -429,7 +429,7 @@ export const relayEvents: RelayEvent[] = [
             },
             {
                 name: TeamName.Blue,
-                time: "9:30:32",
+                time: "9:30:09",
             },
         ],
         playerResults: [
