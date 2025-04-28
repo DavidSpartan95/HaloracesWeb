@@ -22,6 +22,13 @@ export enum TeamName {
     Blue = 'Blue'
 }
 
+export enum TypeOfSource {
+    Exel = 'Exel Sheet',
+    Image = 'Image',
+    Video = 'Video',
+    Other = 'Other'
+}
+
 export interface PlayerResult {
     name: string
     team: TeamName
@@ -42,6 +49,12 @@ export interface RelayEvent {
     winningTeam: TeamName
     teamResults: TeamResult[]
     playerResults: PlayerResult[]
+}
+
+export interface Source {
+    name: string,
+    type: TypeOfSource
+    link: URL 
 }
 
 export const relayEvents: RelayEvent[] = [
