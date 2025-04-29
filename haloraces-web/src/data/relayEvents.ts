@@ -644,10 +644,11 @@ export const relayEvents: RelayEvent[] = [
             { name: "Ecliptyk", team: TeamName.Gold, win: true, playedGames: [Game.Halo5] },
         ],
         source: [{
-            name: "Easy Relay Race 2020",
+            name: "HaloRuns Easy Relay Race - June 28th (4 teams)",
             type: TypeOfSource.Video,
-            link: new URL("www.youtube.com/watch?v=5zw8l2EVYU8&t")
-        }]
+            link: new URL("https://www.youtube.com/watch?v=5zw8l2EVYU8")
+        }
+    ]
     },
     {
         year: 2021,
@@ -1086,7 +1087,7 @@ export const relayEvents: RelayEvent[] = [
         source:[{
             name: "HaloRuns Annual Easy Relay Race 2023",
             type: TypeOfSource.Video,
-            link: new URL("https://www.youtube.com/watch?v=hpkQ-BEtr5Y")
+            link: new URL("https://www.youtube.com/watch?v=ta5VJamxWWo")
         },
         {
             name: "2023 Leg Award show",
