@@ -124,7 +124,7 @@ export const relayEvents: RelayEvent[] = [
         date: new Date("2015-10-25"),
         difficulty: Difficulty.Easy,
         playedGames: [Game.HaloReach, Game.HaloCE, Game.Halo2, Game.Halo3, Game.Halo3ODST, Game.Halo4],
-        winningTeam: TeamName.Green,
+        winningTeam: TeamName.Blue,
         teamResults: [
             {
                 name: TeamName.Red,
@@ -180,74 +180,74 @@ export const relayEvents: RelayEvent[] = [
             {
                 name: "Halodude",
                 team: TeamName.Green,
-                win: true,
+                win: false,
                 playedGames: [Game.HaloReach]
             },
             {
                 name: "GarishGoblin",
                 team: TeamName.Green,
-                win: true,
+                win: false,
                 playedGames: [Game.HaloCE]
             },
             {
                 name: "NadeshotsCats",
                 team: TeamName.Green,
-                win: true,
+                win: false,
                 playedGames: [Game.Halo2]
             },
             {
                 name: "Davco",
                 team: TeamName.Green,
-                win: true,
+                win: false,
                 playedGames: [Game.Halo3ODST]
             },
             {
                 name: "Nagato",
                 team: TeamName.Green,
-                win: true,
+                win: false,
                 playedGames: [Game.Halo3]
             },
             {
                 name: "BadMonsterz",
                 team: TeamName.Green,
-                win: true,
+                win: false,
                 playedGames: [Game.Halo4]
             },
             //Blue Team
             {
                 name: "Backflip",
                 team: TeamName.Blue,
-                win: false,
+                win: true,
                 playedGames: [Game.HaloReach]
             },
             {
                 name: "Savusukka",
                 team: TeamName.Blue,
-                win: false,
+                win: true,
                 playedGames: [Game.HaloCE]
             },
             {
                 name: "Reraised",
                 team: TeamName.Blue,
-                win: false,
+                win: true,
                 playedGames: [Game.Halo2]
             },
             {
                 name: "A Royal Hobo",
                 team: TeamName.Blue,
-                win: false,
+                win: true,
                 playedGames: [Game.Halo3ODST]
             },
             {
                 name: "StuffedCrustFTW",
                 team: TeamName.Blue,
-                win: false,
+                win: true,
                 playedGames: [Game.Halo3]
             },
             {
                 name: "Egg92",
                 team: TeamName.Blue,
-                win: false,
+                win: true,
                 playedGames: [Game.Halo4]
             },
         ],
@@ -255,7 +255,13 @@ export const relayEvents: RelayEvent[] = [
             name: "Screenshot",
             type: TypeOfSource.Image,
             link: new URL("https://gyazo.com/62df449ac666792a653dee7194c994a8")
-        }]
+            },
+        {
+            name: "Discord screenshot",
+            type: TypeOfSource.Image,
+            link: new URL("https://imgur.com/a/6r3iNYy")
+        }
+    ]
     },
     {
         year: 2016,
@@ -360,7 +366,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "00Svo", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "AFilthyCasual", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "Nonstop_Bop", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
-            { name: "Paradoxxic", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
+            { name: "Paradoxxic & Sorix", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
             { name: "VoidsInSilver", team: TeamName.Red, win: true, playedGames: [Game.Halo4] },
             { name: "Hoshka", team: TeamName.Red, win: true, playedGames: [Game.Halo5] },
 
@@ -369,7 +375,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Sub_Whistle", team: TeamName.Green, win: false, playedGames: [Game.HaloCE] },
             { name: "Aster", team: TeamName.Green, win: false, playedGames: [Game.Halo2] },
             { name: "Nagato", team: TeamName.Green, win: false, playedGames: [Game.Halo3ODST] },
-            { name: "bhayward2000", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
+            { name: "Bhayward2000 & TheBlazeJP", team: TeamName.Green, win: false, playedGames: [Game.Halo3] },
             { name: "Egg92", team: TeamName.Green, win: false, playedGames: [Game.Halo4] },
             { name: "BatChat", team: TeamName.Green, win: false, playedGames: [Game.Halo5] },
 
@@ -378,7 +384,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "MikeHawke420", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "Reraised", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
             { name: "Davco", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
-            { name: "Sasquatch", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
+            { name: "Sasquatch & Harc", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "Jon and Pon", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
             { name: "DavidSpartan95", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
         ],
@@ -532,7 +538,13 @@ export const relayEvents: RelayEvent[] = [
             name: "Easy Relay Race 2019",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=1kd-rDUZ6Mg&t.twitch.tv/SpinelessHomelyKiwiGrammarKing")
-        }]
+            },
+            {
+                name: "Discord screenshot",
+                type: TypeOfSource.Image,
+                link: new URL("https://imgur.com/a/TUJ41u3")
+            }
+    ]
     },
     {
         year: 2020,
@@ -575,12 +587,12 @@ export const relayEvents: RelayEvent[] = [
             { name: "DavidSpartan95", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
         ],
         source: [{
-            name: " Part 1 Legendary Relay Race 2020",
+            name: "Part 1 Legendary Relay Race 2020",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=PItCEhKdax4")
         },
         {
-            name: " Part 2 Legendary Relay Race 2020",
+            name: "Part 2 Legendary Relay Race 2020",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=Ry52QcIjSek&feature=youtu.be")
         }
@@ -853,10 +865,10 @@ export const relayEvents: RelayEvent[] = [
         ],
         winningTeam: TeamName.Green,
         teamResults: [
-            { name: TeamName.Gold, time: "???" },
-            { name: TeamName.Red, time: "???" },
-            { name: TeamName.Green, time: "???" },
-            { name: TeamName.Blue, time: "???" },
+            { name: TeamName.Gold, time: "8:34:30" },
+            { name: TeamName.Red, time: "8:31:41" },
+            { name: TeamName.Green, time: "8:26:58" },
+            { name: TeamName.Blue, time: "8:43:32" },
         ],
         playerResults: [
             // Red Team
@@ -903,7 +915,13 @@ export const relayEvents: RelayEvent[] = [
             name: "Easy Relay Race 2022, missing final section",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=DAMjxQwJ_4I")
-        }]
+        },
+        {
+            name: "Discord screenshot",
+            type: TypeOfSource.Image,
+            link: new URL("https://imgur.com/a/Y0htV2a")
+        }
+    ]
     },
     {
         year: 2022,
