@@ -67,9 +67,9 @@
 
 .nav-link {
   color: #E08916;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 1.1rem;
   font-style: normal;
-  font-weight: 600;
   text-decoration: none;
 }
 
