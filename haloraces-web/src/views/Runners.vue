@@ -14,17 +14,26 @@
 
 
     <div class="user-list">
-      <ul>
-        <li v-for="(user, index) in sortedUsers" :key="index" class="user-item">
-          <div class="user-stats">
-            <span class="user-name">{{ user.name }}</span>
-            <span>W: {{ user.wins }}</span>
-            <span>L: {{ user.losses }}</span>
-            <span>Total: {{ user.numRaces }}</span>
 
-          </div>
-        </li>
-      </ul>
+      <div class="title">
+        <span class="tittle-runner">RUNNER</span>
+        <span class="title-text">WINS</span>
+        <span class="title-text">LOSSES</span>
+        <span class="title-text">TOTAL RACES</span>
+      </div>
+
+
+      <li v-for="(user, index) in sortedUsers" :key="index"
+        :class="['user-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+        <div class="user-stats">
+          <span class="user-name">{{ user.name }}</span>
+          <span>{{ user.wins }}</span>
+          <span>{{ user.losses }}</span>
+          <span>{{ user.numRaces }}</span>
+        </div>
+      </li>
+
+
     </div>
 
   </div>
@@ -53,8 +62,19 @@ const sortedUsers = computed(() => {
 </script>
 
 <style scoped>
-.user-list {
+
+.bg-blue {
+  background: #0F1832;
+}
+
+.bg-black {
+  background: #131313;
+}
+.inner-padding {
   padding: 1rem;
+}
+.user-list {
+  
   max-width: 1200px;
   min-width: 900px;
   margin: 0 auto;
@@ -63,32 +83,51 @@ const sortedUsers = computed(() => {
   background: #0F1832;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.title{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* 4 evenly spaced columns */
+  width: 100%;
+  font-size: 1.0rem;
+
+  column-gap: 1rem;
+
+  padding-bottom: 1rem;
+  padding-top: 32px;
+}
+.tittle-runner {
+  font-weight: bold;
+  font-size: 1.0rem;
+  color: #f1f1f1;
+  text-align: left;
+  padding-left: 1rem;
+}
+.title-text {
+  font-weight: bold;
+  font-size: 1.0rem;
+  color: #f1f1f1;
+  text-align: center;
 }
 
 .user-item {
   display: flex;
   justify-content: flex-start;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: #3a3a3a;
-  /* Slightly lighter dark for user item */
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
+  width: 100%;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+
 }
 
 .user-item:hover {
-  background-color: #4c4c4c;
-  /* Lighter hover effect */
+  background-color: #001f4d;
 }
 
 .user-name {
   font-weight: bold;
   font-size: 1.0rem;
   color: #f1f1f1;
+  text-align: left;
+  padding-left: 1rem;
 }
 
 .user-stats {
@@ -99,14 +138,14 @@ ul {
   font-size: 1.0rem;
   color: #c4c4c4;
   column-gap: 1rem;
-  /* optional spacing between columns */
+  text-align: center;
 }
 
 .user-game-count {
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: #a8a8a8;
-  /* Slightly darker gray for game count */
+  
 }
 
 .game-count {
