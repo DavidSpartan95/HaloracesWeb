@@ -1,66 +1,100 @@
 <template>
-    <nav>
-        <div class="navbar-background"></div>
+  <nav>
+    <div class="navbar">
+      <div class="nav-left">
+        <img src="../assets/race-icon-modified.png" alt="Logo" class="nav-img" />
+      </div>
 
-        <div class="nav-content">
-            <div class="navbar-text">
-                <div>
-                    <img src="../assets/race-icon-modified.png" alt="Logo" height="50" width="50" />
-                </div>
-                <router-link to= home class="nav-link">Home</router-link>
-                <router-link to= runners class="nav-link">Runners</router-link>
-                <router-link to= race-results class="nav-link">Race Results</router-link>
-            </div>
-        </div>
-    </nav>
+      <div class="nav-center">
+        <router-link to="home" class="nav-link">Home</router-link>
+        <router-link to="runners" class="nav-link">Runners</router-link>
+        <router-link to="race-results" class="nav-link">Race Results</router-link>
+      </div>
+
+      <div class="nav-right">
+        <!-- Spacer to balance the image on the left -->
+      </div>
+    </div>
+  </nav>
 </template>
 
-<script setup lang="ts">
-// No logic needed
-</script>
-
-<style scoped>
-.navbar-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 75px;
-
-    background-color: #1e1e2f;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    z-index: 0;
-}
-
-.nav-content {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 75px; /* match navbar background */
-    display: flex;
-    align-items: center; /* center vertically */
-    justify-content: center; /* optional: center horizontally */
-    z-index: 10;
-}
-
-.navbar-text {
-  width: 100%;
-  max-width: 100%; /* Don’t constrain more than needed */
+  
+  <script setup lang="ts">
+  // No logic needed
+  </script>
+  
+  <style scoped>
+  .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 100%;
+  max-width: 1200px;
+  height: 96px;
+  margin: 0 auto;
+  border-radius: 100px;
+  border: 1px solid rgba(161, 161, 161, 0.5);
+  background: #0f1832;
+  box-sizing: border-box;
+}
+
+.nav-left,
+.nav-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
   gap: 2rem;
 }
 
+.nav-img {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+}
+
 .nav-link {
-    color: #bfa450;
-    font-weight: bold;
-    font-size: 1.125rem;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: #E08916;
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-style: normal;
+  text-decoration: none;
 }
 
 .nav-link:hover {
-    color: #d8b74a;
-    text-decoration: underline;
+  color: #d8b74a;
+  text-decoration: underline;
 }
-</style>
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-center {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-left,
+  .nav-right {
+    justify-content: center;
+  }
+}
+  </style>
+  

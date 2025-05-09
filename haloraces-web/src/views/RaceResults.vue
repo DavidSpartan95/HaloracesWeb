@@ -1,88 +1,184 @@
 <template>
   <div class="race-results">
-    <h1 class="title">Race Results</h1>
-    <div
-      v-for="event in relayEvents"
-      :key="event.year"
-      class="event-card"
-    >
-      <h2>{{ 
-      new Date(event.date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit'
-    }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-       }} - {{ event.difficulty }}</h2>
+
+    <div v-if ="selectedSort != 'new' && selectedSort != 'oldest'">
+      <h3 class ="win-counter"> {{ selectedSort.toUpperCase() }} TOTAL WINS {{ sortedRelayEvents.length }}</h3>
+      
+    </div>
+    <h1 v-else class="title">RACE RESULTS</h1>
+
+    <div class="sort">
+      <div class="sort-controls">
+        <label for="sort" class="sort-text">Sort by:</label>
+        <select v-model="selectedSort" id="sort">
+          <option value="new">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="red">Red Wins</option>
+          <option value="green">Green Wins</option>
+          <option value="blue">Blue Wins</option>
+          <option value="gold">Gold Wins</option>
+        </select>
+      </div>
+    </div>
+    
+    <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card">
+      <h2>{{
+        new Date(event.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit'
+        }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+      }} - {{ event.difficulty }}</h2>
       <p class="winner">
-        🏆 Winning Team:
-        <span :class="teamClass(event.winningTeam)">{{ event.winningTeam }}</span>
+        🏆 WINNING TEAM:
+        <span :class="teamClass(event.winningTeam)">{{ event.winningTeam.toUpperCase() }}</span>
       </p>
 
-      <div class="games-list">
-        <h3>Games Played:</h3>
-        <div class="games-horizontal">
-          <div
-            class="game"
-            v-for="game in event.playedGames"
-            :key="game"
-          >
-            <strong>{{ game }}</strong>
-            <div class="players">
-              <div
-                v-for="player in playersForGame(event.playerResults, game)"
-                :key="player.name + game"
-                :class="['player-item', teamClass(player.team)]"
-              >
-                {{ player.name }} ({{ player.team }}) <span v-if="player.win">✔</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Header row with team names -->
+      <div class="game-results-grid" :style="{
+        display: 'grid',
+        gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
+      }">
+        <strong></strong> <!-- Placeholder for game name column -->
+        <strong v-for="team in event.teamResults" :key="team.name">{{ team.name }}</strong>
       </div>
+
+      <!-- Game rows -->
+
+      <div v-for="(game, index) in event.playedGames" :key="game"
+        :class="['game-results-grid', index % 2 === 0 ? 'bg-black' : 'bg-blue']" :style="{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${1 + uniqueTeamsForGame(event.playerResults, game).length}, 1fr)`
+        }">
+        <strong class="game-name">{{ game }}</strong>
+        <span v-for="player in playersForGame(event.playerResults, game)" :key="player.name">
+          {{ player.name }}
+        </span>
+      </div>
+
     </div>
   </div>
 </template>
 
-  
-  <script setup lang="ts">
-  import { relayEvents } from '../data/relayEvents'
-  import type { Game, PlayerResult, TeamName } from '../data/relayEvents'
-  
-  function playersForGame(playerResults: PlayerResult[], game: Game): PlayerResult[] {
-    return playerResults.filter(player => player.playedGames.includes(game))
+
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+import { relayEvents } from '../data/relayEvents'
+import type { Game, PlayerResult, TeamName } from '../data/relayEvents'
+
+
+
+const selectedSort = ref('new');
+
+const sortedRelayEvents = computed(() => {
+  const base = [...relayEvents]; // safely cloned array
+
+  switch (selectedSort.value) {
+    case 'new':
+      return base.sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'oldest':
+      return base.sort((a, b) => a.date.getTime() - b.date.getTime());
+    case 'green':
+      return base
+        .filter(event => event.winningTeam === 'Green')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'red':
+      return base
+        .filter(event => event.winningTeam === 'Red')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'blue':
+      return base
+        .filter(event => event.winningTeam === 'Blue')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'gold':
+      return base
+        .filter(event => event.winningTeam === 'Gold')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    default:
+      return base;
   }
-  
-  function teamClass(team: TeamName) {
-    switch (team) {
-      case 'Green': return 'green-team'
-      case 'Gold': return 'gold-team'
-      case 'Red': return 'red-team'
-      case 'Blue': return 'blue-team'
-      default: return ''
-    }
+});
+
+
+
+function playersForGame(playerResults: PlayerResult[], game: Game): PlayerResult[] {
+  return playerResults.filter(player => player.playedGames.includes(game))
+}
+function uniqueTeamsForGame(playerResults: PlayerResult[], game: Game): TeamName[] {
+  const teams = new Set(
+    playerResults
+      .filter(player => player.playedGames.includes(game))
+      .map(player => player.team)
+  );
+  return Array.from(teams);
+}
+
+function teamClass(team: TeamName) {
+  switch (team) {
+    case 'Green': return 'green-team'
+    case 'Gold': return 'gold-team'
+    case 'Red': return 'red-team'
+    case 'Blue': return 'blue-team'
+    default: return ''
   }
-  </script>
-  
-  <style scoped>
+}
+</script>
+
+<style scoped>
+.bg-black {
+  background: #131313;
+}
+
+.game-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+  width: 100%;
+  font-size: 1.0rem;
+
+  column-gap: 1rem;
+
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  align-items: center;
+}
+
 .race-results {
   padding: 2rem;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .title {
+  color: #FFF;
   text-align: center;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 630;
+  line-height: 60px;
+
+  letter-spacing: -0.96px;
   margin-bottom: 2rem;
+}
+.win-counter {
+  color: #FFF;
+  text-align: center;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 630;
+  letter-spacing: -0.96px;
 }
 
 .event-card {
-  background-color: #1e1e2f;
   color: #f1f1f1;
-  padding: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 48px;
   border-radius: 12px;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s, color 0.3s;
+  border-radius: 20px;
+  border: 1px solid rgba(161, 161, 161, 0.50);
+  background: #0F1832;
+  text-align: center;
 }
 
 .winner {
@@ -103,9 +199,11 @@
   padding: 0.75rem;
   min-width: 200px;
   flex-shrink: 0;
-  background: #1a1a1a;
 }
 
+.game-name {
+  color: #E08916;
+}
 
 .games-list {
   margin-top: 1rem;
@@ -124,45 +222,109 @@
 
 /* Team Colors - work in both themes */
 .green-team {
-  background-color: #a5d6a7;
-  color: #1b5e20;
+  color: #38F803;
+  font-weight: bold;
+  font-size: large;
 }
+
 .gold-team {
-  background-color: #fff176;
-  color: #795548;
+  color: #FFFF00;
+  font-weight: bold;
+  font-size: large;
 }
+
 .red-team {
-  background-color: #ef9a9a;
-  color: #b71c1c;
+  color: #FF3131;
+  font-weight: bold;
+  font-size: large;
 }
+
 .blue-team {
-  background-color: #90caf9;
-  color: #0d47a1;
+  color: #05b0ff;
+  font-weight: bold;
+  font-size: large;
 }
 
 /* 🌙 Dark mode support */
 @media (prefers-color-scheme: dark) {
   .event-card {
-    background-color: #1e1e2f;
+    background-color: #0F1832;
     color: #f1f1f1;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   }
 
   .green-team {
-    background-color: #2e7d32;
-    color: #c8e6c9;
+    color: #38F803;
+    font-weight: bold;
+    font-size: large;
   }
+
   .gold-team {
-    background-color: #bfa73f;
-    color: #fff8e1;
+    color: #FFFF00;
+    font-weight: bold;
+    font-size: large;
   }
+
   .red-team {
-    background-color: #c62828;
-    color: #ffcdd2;
+    color: #FF3131;
+    font-weight: bold;
+    font-size: large;
   }
+
   .blue-team {
-    background-color: #1565c0;
-    color: #bbdefb;
+    color: #05b0ff;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .sort {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: flex-end;
+    /* aligns content to the right */
+    align-items: center;
+    /* centers content vertically */
+    height: 60px;
+    /* optional: gives it a height to center within */
+  }
+
+  .sort-text {
+    color: #FCFCFC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #f1f1f1;
+  }
+
+  .sort-controls select {
+    appearance: none;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-color: #E08916;
+    color: #ffffff;
+    padding: 12px 30px 12px 30px;
+    /* extra right padding for arrow space */
+    border-radius: 12px;
+    border: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 10,0 5,6' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 8px;
   }
 }
 </style>
