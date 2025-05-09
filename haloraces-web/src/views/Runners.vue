@@ -27,9 +27,9 @@
         :class="['user-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
         <div class="user-stats">
           <span class="user-name">{{ user.name }}</span>
-          <span>{{ user.wins }}</span>
-          <span>{{ user.losses }}</span>
-          <span>{{ user.numRaces }}</span>
+          <span class="user-stat">{{ user.wins }}</span>
+          <span class="user-stat">{{ user.losses }}</span>
+          <span class="user-stat">{{ user.numRaces }}</span>
         </div>
       </li>
 
@@ -125,7 +125,7 @@ const sortedUsers = computed(() => {
 .user-name {
   font-weight: bold;
   font-size: 1.0rem;
-  color: #f1f1f1;
+  color: #E08916;
   text-align: left;
   padding-left: 1rem;
 }
@@ -139,6 +139,9 @@ const sortedUsers = computed(() => {
   color: #c4c4c4;
   column-gap: 1rem;
   text-align: center;
+}
+.user-stat {
+  font-weight: bold;
 }
 
 .user-game-count {
