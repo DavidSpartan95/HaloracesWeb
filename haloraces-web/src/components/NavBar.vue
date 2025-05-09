@@ -29,8 +29,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  width: 100%;
   max-width: 1200px;
+  min-width: 900px;
+  
   height: 96px;
   margin: 0 auto;
   border-radius: 100px;
@@ -76,25 +77,6 @@
 .nav-link:hover {
   color: #d8b74a;
   text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .nav-center {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-left,
-  .nav-right {
-    justify-content: center;
-  }
 }
   </style>
   

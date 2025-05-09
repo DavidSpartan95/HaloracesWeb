@@ -156,7 +156,7 @@ function teamClass(team: TeamName) {
   font-style: normal;
   font-weight: 630;
   line-height: 60px;
-
+  min-width: 900px;
   letter-spacing: -0.96px;
   margin-bottom: 2rem;
 }
@@ -176,6 +176,7 @@ function teamClass(team: TeamName) {
   border-radius: 12px;
   margin-bottom: 2rem;
   border-radius: 20px;
+  min-width: 900px;
   border: 1px solid rgba(161, 161, 161, 0.50);
   background: #0F1832;
   text-align: center;
@@ -278,8 +279,8 @@ function teamClass(team: TeamName) {
   }
 
   .sort {
-    width: 100%;
-    max-width: 1200px;
+
+    min-width: 900px;
     margin: 0 auto;
     padding-top: 50px;
     padding-bottom: 32px;
