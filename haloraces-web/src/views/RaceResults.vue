@@ -1,7 +1,11 @@
 <template>
   <div class="race-results">
 
-    <h1 class="title">RACE RESULTS</h1>
+    <div v-if ="selectedSort != 'new' && selectedSort != 'oldest'">
+      <h3 class ="win-counter"> {{ selectedSort.toUpperCase() }} TOTAL WINS {{ sortedRelayEvents.length }}</h3>
+      
+    </div>
+    <h1 v-else class="title">RACE RESULTS</h1>
 
     <div class="sort">
       <div class="sort-controls">
@@ -9,10 +13,14 @@
         <select v-model="selectedSort" id="sort">
           <option value="new">Newest</option>
           <option value="oldest">Oldest</option>
+          <option value="red">Red Wins</option>
+          <option value="green">Green Wins</option>
+          <option value="blue">Blue Wins</option>
+          <option value="gold">Gold Wins</option>
         </select>
       </div>
     </div>
-
+    
     <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card">
       <h2>{{
         new Date(event.date).toLocaleDateString('en-US', {
@@ -23,7 +31,7 @@
       }} - {{ event.difficulty }}</h2>
       <p class="winner">
         🏆 WINNING TEAM:
-        <span :class="teamClass(event.winningTeam)">{{ event.winningTeam }}</span>
+        <span :class="teamClass(event.winningTeam)">{{ event.winningTeam.toUpperCase() }}</span>
       </p>
 
       <!-- Header row with team names -->
@@ -70,6 +78,22 @@ const sortedRelayEvents = computed(() => {
       return base.sort((a, b) => b.date.getTime() - a.date.getTime());
     case 'oldest':
       return base.sort((a, b) => a.date.getTime() - b.date.getTime());
+    case 'green':
+      return base
+        .filter(event => event.winningTeam === 'Green')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'red':
+      return base
+        .filter(event => event.winningTeam === 'Red')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'blue':
+      return base
+        .filter(event => event.winningTeam === 'Blue')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    case 'gold':
+      return base
+        .filter(event => event.winningTeam === 'Gold')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
     default:
       return base;
   }
@@ -135,6 +159,14 @@ function teamClass(team: TeamName) {
 
   letter-spacing: -0.96px;
   margin-bottom: 2rem;
+}
+.win-counter {
+  color: #FFF;
+  text-align: center;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 630;
+  letter-spacing: -0.96px;
 }
 
 .event-card {
