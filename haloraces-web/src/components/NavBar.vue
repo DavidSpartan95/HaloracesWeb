@@ -29,8 +29,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  max-width: 1200px;
-  min-width: 900px;
+  width:100%;
   
   height: 96px;
   margin: 0 auto;

@@ -77,7 +77,7 @@ const sortedUsers = computed(() => {
 .user-list {
 
   max-width: 1200px;
-  min-width: 900px;
+  width: 100%;
   margin: 0 auto;
   border-radius: 20px;
   border: 1px solid rgba(161, 161, 161, 0.50);
@@ -161,7 +161,6 @@ const sortedUsers = computed(() => {
 
 .sort {
   max-width: 1200px;
-  min-width: 900px;
   margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 32px;
