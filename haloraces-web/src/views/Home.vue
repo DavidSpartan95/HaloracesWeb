@@ -29,29 +29,31 @@
 </script>
 
 <style scoped>
+
 .hello {
   display: flex;
-  flex-direction: column; 
-  align-items: center;     
-  justify-content: center; 
-  padding-top: 48px;
+  justify-content: center; /* horizontal centering */
   text-align: center;
+  padding-top: 48px; /* keep your original top spacing */
 }
 
 
 .hello-box {
   display: flex;
-  max-width: 1120px;
-  min-width: 900px;
-  padding: 48px;
   flex-direction: column;
   justify-content: center;
   gap: 14px;
+
+  max-width: 1120px;
+  width: 100%;          /* ✅ allow shrinking */
+  padding: 48px;
+  box-sizing: border-box;
 
   border-radius: 20px;
   border: 1px solid rgba(161, 161, 161, 0.50);
   background: #0F1832;
 }
+
 
 .hello-breadtext {
   text-align: left
