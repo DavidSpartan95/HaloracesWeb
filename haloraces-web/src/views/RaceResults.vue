@@ -166,6 +166,7 @@ function teamClass(team: TeamName) {
   font-size: 38px;
   font-style: normal;
   font-weight: 630;
+  min-width: 900px;
   letter-spacing: -0.96px;
 }
 

@@ -62,7 +62,6 @@ const sortedUsers = computed(() => {
 </script>
 
 <style scoped>
-
 .bg-blue {
   background: #0F1832;
 }
@@ -70,11 +69,13 @@ const sortedUsers = computed(() => {
 .bg-black {
   background: #131313;
 }
+
 .inner-padding {
   padding: 1rem;
 }
+
 .user-list {
-  
+
   max-width: 1200px;
   min-width: 900px;
   margin: 0 auto;
@@ -83,7 +84,7 @@ const sortedUsers = computed(() => {
   background: #0F1832;
 }
 
-.title{
+.title {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   /* 4 evenly spaced columns */
@@ -95,6 +96,7 @@ const sortedUsers = computed(() => {
   padding-bottom: 1rem;
   padding-top: 32px;
 }
+
 .tittle-runner {
   font-weight: bold;
   font-size: 1.0rem;
@@ -102,6 +104,7 @@ const sortedUsers = computed(() => {
   text-align: left;
   padding-left: 1rem;
 }
+
 .title-text {
   font-weight: bold;
   font-size: 1.0rem;
@@ -140,6 +143,7 @@ const sortedUsers = computed(() => {
   column-gap: 1rem;
   text-align: center;
 }
+
 .user-stat {
   font-weight: bold;
 }
@@ -148,7 +152,7 @@ const sortedUsers = computed(() => {
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: #a8a8a8;
-  
+
 }
 
 .game-count {
@@ -156,8 +160,8 @@ const sortedUsers = computed(() => {
 }
 
 .sort {
-  width: 100%;
   max-width: 1200px;
+  min-width: 900px;
   margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 32px;

@@ -42,6 +42,7 @@
 .hello-box {
   display: flex;
   max-width: 1120px;
+  min-width: 900px;
   padding: 48px;
   flex-direction: column;
   justify-content: center;
