@@ -8,9 +8,9 @@
       </div>
 
       <div class="nav-center">
-        <router-link to="home" class="nav-link">Home</router-link>
-        <router-link to="runners" class="nav-link">Runners</router-link>
-        <router-link to="race-results" class="nav-link">Race Results</router-link>
+        <router-link to="/home" class="nav-link">Home</router-link>
+        <router-link to="/runners" class="nav-link">Runners</router-link>
+        <router-link to="/race-results" class="nav-link">Race Results</router-link>
       </div>
 
       <div class="nav-img">

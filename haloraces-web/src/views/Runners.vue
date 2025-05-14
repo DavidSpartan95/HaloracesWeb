@@ -25,8 +25,13 @@
 
       <li v-for="(user, index) in sortedUsers" :key="index"
         :class="['user-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+
+
+
         <div class="user-stats">
-          <span class="user-name">{{ user.name }}</span>
+          <router-link :to="`/service-record/${user.name}`" class="user-name">
+            <span>{{ user.name }}</span>
+          </router-link>
           <span class="user-stat">{{ user.wins }}</span>
           <span class="user-stat">{{ user.losses }}</span>
           <span class="user-stat">{{ user.numRaces }}</span>
