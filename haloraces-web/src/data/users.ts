@@ -3,12 +3,13 @@ import {relayEvents} from "./relayEvents";
 
 export interface User {
     name: string;
-    numRaces: number;
-    wins: number;
-    losses: number;
+    numRaces: RelayEvent[];   // Array of RelayEvents the user participated in
+    wins: RelayEvent[];       // Array of RelayEvents the user won
+    losses: RelayEvent[];     // Array of RelayEvents the user lost
     firstRelayRace: Date;
-    gameCount: { [game in Game]?: number }; // Track count per game
+    gameCount: { [game in Game]?: number };  // Track count per game
 }
+
 
 // Function to generate user stats 
 function generateUserStats(relayEvents: RelayEvent[]): User[] {
@@ -26,9 +27,9 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
                 if (!users[userName]) {
                     users[userName] = {
                         name: userName,
-                        numRaces: 1,
-                        wins: win ? 1 : 0,
-                        losses: win ? 0 : 1,
+                        numRaces: [event],  // Store the event in the numRaces array
+                        wins: win ? [event] : [],  // If the user won, store the event in the wins array
+                        losses: win ? [] : [event],  // If the user lost, store the event in the losses array
                         firstRelayRace: event.date,
                         gameCount: playedGames.reduce((acc, game) => {
                             acc[game] = (acc[game] || 0) + 1;
@@ -37,9 +38,15 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
                     };
                 } else {
                     // Update existing user's stats
-                    users[userName].numRaces += 1;
-                    users[userName].wins += win ? 1 : 0;
-                    users[userName].losses += win ? 0 : 1;
+                    users[userName].numRaces.push(event);  // Add the current event to numRaces
+
+                    // If the user won, add the event to wins array
+                    if (win) {
+                        users[userName].wins.push(event);
+                    } else {
+                        // If the user lost, add the event to losses array
+                        users[userName].losses.push(event);
+                    }
 
                     // Update the game count
                     playedGames.forEach((game) => {
@@ -52,6 +59,7 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
 
     return Object.values(users);
 }
+
 
 
 export const users = generateUserStats(relayEvents);

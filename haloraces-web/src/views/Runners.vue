@@ -32,9 +32,9 @@
           <router-link :to="`/service-record/${user.name}`" class="user-name">
             <span>{{ user.name }}</span>
           </router-link>
-          <span class="user-stat">{{ user.wins }}</span>
-          <span class="user-stat">{{ user.losses }}</span>
-          <span class="user-stat">{{ user.numRaces }}</span>
+          <span class="user-stat">{{ user.wins.length }}</span>
+          <span class="user-stat">{{ user.losses.length }}</span>
+          <span class="user-stat">{{ user.numRaces.length }}</span>
         </div>
       </li>
 
@@ -54,11 +54,11 @@ const sortedUsers = computed(() => {
   const sorted = [...users];
   switch (selectedSort.value) {
     case 'wins':
-      return sorted.sort((a, b) => b.wins - a.wins);
+      return sorted.sort((a, b) => b.wins.length - a.wins.length);
     case 'losses':
-      return sorted.sort((a, b) => b.losses - a.losses);
+      return sorted.sort((a, b) => b.losses.length - a.losses.length);
     case 'numRaces':
-      return sorted.sort((a, b) => b.numRaces - a.numRaces);
+      return sorted.sort((a, b) => b.numRaces.length - a.numRaces.length);
     default:
       return sorted.sort((a, b) => a.name.localeCompare(b.name));
   }

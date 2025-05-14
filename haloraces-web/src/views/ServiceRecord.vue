@@ -3,9 +3,9 @@
         <h1>Service Record: {{ user?.name }}</h1>
 
         <div v-if="user">
-            <p>Races: {{ user.numRaces }}</p>
-            <p>Wins: {{ user.wins }}</p>
-            <p>Losses: {{ user.losses }}</p>
+            <p>Races: {{ user.numRaces.length }}</p>
+            <p>Wins: {{ user.wins.length }}</p>
+            <p>Losses: {{ user.losses.length }}</p>
             <p>First Relay Race: {{ user.firstRelayRace.toDateString() }}</p>
 
             <div>
