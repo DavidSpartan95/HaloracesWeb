@@ -27,9 +27,9 @@
 
     <div v-if="sidebarOpen" class="sidebar">
       <button class="close-btn" @click="toggleSidebar">×</button>
-      <router-link to="home" class="sidebar-link" @click="toggleSidebar">Home</router-link>
-      <router-link to="runners" class="sidebar-link" @click="toggleSidebar">Runners</router-link>
-      <router-link to="race-results" class="sidebar-link" @click="toggleSidebar">Race Results</router-link>
+      <router-link to="/home" class="sidebar-link" @click="toggleSidebar">Home</router-link>
+      <router-link to="/runners" class="sidebar-link" @click="toggleSidebar">Runners</router-link>
+      <router-link to="/race-results" class="sidebar-link" @click="toggleSidebar">Race Results</router-link>
     </div>
   </nav>
 </template>
