@@ -1,6 +1,8 @@
 <template>
-  <nav>
+  <nav class="nav">
+
     <div class="navbar">
+
       <div class="nav-left">
         <img src="../assets/race-icon-modified.png" alt="Logo" class="nav-img" />
       </div>
@@ -11,28 +13,60 @@
         <router-link to="race-results" class="nav-link">Race Results</router-link>
       </div>
 
-      <div class="nav-right">
+      <div class="nav-img">
         <!-- Spacer to balance the image on the left -->
       </div>
+
+      <div class="nav-left-hamburger">
+        <button class="hamburger" @click="toggleSidebar" aria-label="Menu">
+          &#9776;
+        </button>
+      </div>
+
+    </div>
+
+    <div v-if="sidebarOpen" class="sidebar">
+      <button class="close-btn" @click="toggleSidebar">×</button>
+      <router-link to="home" class="sidebar-link" @click="toggleSidebar">Home</router-link>
+      <router-link to="runners" class="sidebar-link" @click="toggleSidebar">Runners</router-link>
+      <router-link to="race-results" class="sidebar-link" @click="toggleSidebar">Race Results</router-link>
     </div>
   </nav>
 </template>
 
-  
-  <script setup lang="ts">
-  // No logic needed
-  </script>
-  
-  <style scoped>
-  .navbar {
+
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const sidebarOpen = ref(false);
+const toggleSidebar = () => {
+  sidebarOpen.value = !sidebarOpen.value;
+};
+</script>
+
+
+<style scoped>
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+.nav {
+  width: 100%;
+}
+
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  max-width: 1200px;
-  min-width: 900px;
-  
-  height: 96px;
+  max-width: 1300px;
+  height: 75px;
   margin: 0 auto;
   border-radius: 100px;
   border: 1px solid rgba(161, 161, 161, 0.5);
@@ -41,14 +75,14 @@
 }
 
 .nav-left,
-.nav-right {
-  flex: 1;
+
+.nav-left-hamburger {
+  flex: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
 
-.nav-right {
+.nav-left-hamburger {
   justify-content: flex-end;
 }
 
@@ -62,7 +96,6 @@
 .nav-img {
   width: 48px;
   height: 48px;
-  flex-shrink: 0;
   aspect-ratio: 1/1;
 }
 
@@ -70,7 +103,6 @@
   color: #E08916;
   font-weight: bold;
   font-size: 1.1rem;
-  font-style: normal;
   text-decoration: none;
 }
 
@@ -78,5 +110,64 @@
   color: #d8b74a;
   text-decoration: underline;
 }
-  </style>
-  
+
+.hamburger {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #E08916;
+  cursor: pointer;
+  display: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 100%;
+  background: #0f1832;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  gap: 1.5rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.sidebar-link {
+  color: #E08916;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.sidebar-link:hover {
+  text-decoration: underline;
+  color: #d8b74a;
+}
+
+.close-btn {
+  align-self: flex-end;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #E08916;
+  cursor: pointer;
+}
+
+@media (max-width: 635px) {
+  .nav {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+</style>

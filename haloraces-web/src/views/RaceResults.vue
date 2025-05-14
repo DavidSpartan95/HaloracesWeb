@@ -1,9 +1,9 @@
 <template>
-  <div class="race-results">
+  <div>
 
-    <div v-if ="selectedSort != 'new' && selectedSort != 'oldest'">
-      <h3 class ="win-counter"> {{ selectedSort.toUpperCase() }} TOTAL WINS {{ sortedRelayEvents.length }}</h3>
-      
+    <div v-if="selectedSort != 'new' && selectedSort != 'oldest'">
+      <h3 class="win-counter"> {{ selectedSort.toUpperCase() }} TOTAL WINS {{ sortedRelayEvents.length }}</h3>
+
     </div>
     <h1 v-else class="title">RACE RESULTS</h1>
 
@@ -20,43 +20,45 @@
         </select>
       </div>
     </div>
-    
-    <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card">
-      <h2>{{
-        new Date(event.date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: '2-digit'
-        }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-      }} - {{ event.difficulty }}</h2>
-      <p class="winner">
-        🏆 WINNING TEAM:
-        <span :class="teamClass(event.winningTeam)">{{ event.winningTeam.toUpperCase() }}</span>
-      </p>
+    <div class="centered-container">
+      <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card">
+        <h2>{{
+          new Date(event.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: '2-digit'
+          }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+          }} - {{ event.difficulty }}</h2>
+        <p class="winner">
+          🏆 WINNING TEAM:
+          <span :class="teamClass(event.winningTeam)">{{ event.winningTeam.toUpperCase() }}</span>
+        </p>
 
-      <!-- Header row with team names -->
-      <div class="game-results-grid" :style="{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
-      }">
-        <strong></strong> <!-- Placeholder for game name column -->
-        <strong v-for="team in event.teamResults" :key="team.name">{{ team.name }}</strong>
-      </div>
-
-      <!-- Game rows -->
-
-      <div v-for="(game, index) in event.playedGames" :key="game"
-        :class="['game-results-grid', index % 2 === 0 ? 'bg-black' : 'bg-blue']" :style="{
+        <!-- Header row with team names -->
+        <div class="game-results-grid" :style="{
           display: 'grid',
-          gridTemplateColumns: `repeat(${1 + uniqueTeamsForGame(event.playerResults, game).length}, 1fr)`
+          gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
         }">
-        <strong class="game-name">{{ game }}</strong>
-        <span v-for="player in playersForGame(event.playerResults, game)" :key="player.name">
-          {{ player.name }}
-        </span>
-      </div>
+          <strong></strong> <!-- Placeholder for game name column -->
+          <strong v-for="team in event.teamResults" :key="team.name">{{ team.name }}</strong>
+        </div>
 
+        <!-- Game rows -->
+
+        <div v-for="(game, index) in event.playedGames" :key="game"
+          :class="['game-results-grid', index % 2 === 0 ? 'bg-black' : 'bg-blue']" :style="{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${1 + uniqueTeamsForGame(event.playerResults, game).length}, 1fr)`
+          }">
+          <strong class="game-name">{{ game }}</strong>
+          <span v-for="player in playersForGame(event.playerResults, game)" :key="player.name">
+            {{ player.name }}
+          </span>
+        </div>
+
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -125,6 +127,12 @@ function teamClass(team: TeamName) {
 </script>
 
 <style scoped>
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers horizontally */
+}
+
 .bg-black {
   background: #131313;
 }
@@ -143,11 +151,8 @@ function teamClass(team: TeamName) {
   align-items: center;
 }
 
-.race-results {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
+
 
 .title {
   color: #FFF;
@@ -156,17 +161,17 @@ function teamClass(team: TeamName) {
   font-style: normal;
   font-weight: 630;
   line-height: 60px;
-  min-width: 900px;
   letter-spacing: -0.96px;
   margin-bottom: 2rem;
 }
+
 .win-counter {
   color: #FFF;
   text-align: center;
   font-size: 38px;
   font-style: normal;
   font-weight: 630;
-  min-width: 900px;
+  width: 100%;
   letter-spacing: -0.96px;
 }
 
@@ -177,7 +182,8 @@ function teamClass(team: TeamName) {
   border-radius: 12px;
   margin-bottom: 2rem;
   border-radius: 20px;
-  min-width: 900px;
+  width: 100%;
+  max-width: 1200px;
   border: 1px solid rgba(161, 161, 161, 0.50);
   background: #0F1832;
   text-align: center;
@@ -199,7 +205,6 @@ function teamClass(team: TeamName) {
   border: 1px solid #1f1e1e;
   border-radius: 8px;
   padding: 0.75rem;
-  min-width: 200px;
   flex-shrink: 0;
 }
 
@@ -280,8 +285,8 @@ function teamClass(team: TeamName) {
   }
 
   .sort {
-
-    min-width: 900px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding-top: 50px;
     padding-bottom: 32px;
