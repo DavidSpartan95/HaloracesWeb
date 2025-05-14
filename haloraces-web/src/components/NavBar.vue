@@ -56,15 +56,17 @@ button {
   color: inherit;
 }
 
-.nav {}
+.nav {
+  width: 100%;
+}
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  width: 100%;
-  height: 96px;
+  max-width: 1300px;
+  height: 75px;
   margin: 0 auto;
   border-radius: 100px;
   border: 1px solid rgba(161, 161, 161, 0.5);
