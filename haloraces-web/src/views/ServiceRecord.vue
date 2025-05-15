@@ -20,7 +20,7 @@
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <h4>Play Count Per Game</h4>
                     <p v-for="(count, game) in user.gameCount" :key="game">
-                        {{ game }}: {{ count }} 
+                        {{ game }}: {{ count }}
                     </p>
                 </div>
             </div>
@@ -36,16 +36,21 @@
 
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <div class="expandable-content">
-                        <p v-for="(game, index) in user.wins" :key="index"
-                            :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
-                            {{
-                                new Date(game.date).toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'short',
-                                    day: '2-digit'
-                                }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                            }} - {{ game.difficulty }}
-                        </p>
+                        <router-link v-for="(game, index) in user.wins" :key="index" :to="{
+                            name: 'RaceResults',
+                            hash: '#event-' + formatDateForId(game.date)
+                        }" class="result-item-link">
+
+                            <p :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                                {{
+                                    new Date(game.date).toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: '2-digit'
+                                    }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+                                }} - {{ game.difficulty }}
+                            </p>
+                        </router-link>
                     </div>
                 </div>
 
@@ -58,16 +63,21 @@
                     </div>
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <div class="expandable-content">
-                        <p v-for="(game, index) in user.losses" :key="index"
-                            :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
-                            {{
-                                new Date(game.date).toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'short',
-                                    day: '2-digit'
-                                }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                            }} - {{ game.difficulty }}
-                        </p>
+                        <router-link v-for="(game, index) in user.wins" :key="index" :to="{
+                            name: 'RaceResults',
+                            hash: '#event-' + formatDateForId(game.date)
+                        }" class="result-item-link">
+
+                            <p :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                                {{
+                                    new Date(game.date).toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: '2-digit'
+                                    }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+                                }} - {{ game.difficulty }}
+                            </p>
+                        </router-link>
                     </div>
                 </div>
 
@@ -82,16 +92,21 @@
 
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <div class="expandable-content">
-                        <p v-for="(game, index) in user.numRaces" :key="index"
-                            :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
-                            {{
-                                new Date(game.date).toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'short',
-                                    day: '2-digit'
-                                }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                            }} - {{ game.difficulty }}
-                        </p>
+                        <router-link v-for="(game, index) in user.wins" :key="index" :to="{
+                            name: 'RaceResults',
+                            hash: '#event-' + formatDateForId(game.date)
+                        }" class="result-item-link">
+
+                            <p :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                                {{
+                                    new Date(game.date).toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: '2-digit'
+                                    }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+                                }} - {{ game.difficulty }}
+                            </p>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -124,6 +139,11 @@ const openAll = ref(true);
 const toggleAll = () => {
     openAll.value = !openAll.value;
 };
+function formatDateForId(date: string | Date) {
+    // turn “2025‑05‑15T12:00:00Z” (or Date) into “2025-05-15”
+    const d = typeof date === 'string' ? new Date(date) : date;
+    return d.toISOString().slice(0, 10);
+}
 </script>
 
 <style scoped>
@@ -181,6 +201,7 @@ const toggleAll = () => {
     align-self: flex-start;
 
 }
+
 .record-sum p {
     color: #E08916
 }

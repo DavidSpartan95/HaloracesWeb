@@ -22,7 +22,7 @@
     </div>
     <div class="centered-container">
       <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card"
-        :id="`event-${event.date.toDateString}`">
+        :id="`event-${formatDateForId(event.date)}`">
         <h2>{{
           new Date(event.date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -100,7 +100,11 @@ const sortedRelayEvents = computed(() => {
   }
 });
 
-
+function formatDateForId(date: string|Date) {
+  // turn “2025‑05‑15T12:00:00Z” (or Date) into “2025-05-15”
+  const d = typeof date === 'string' ? new Date(date) : date;
+  return d.toISOString().slice(0, 10);
+}
 
 function playersForGame(playerResults: PlayerResult[], game: Game): PlayerResult[] {
   return playerResults.filter(player => player.playedGames.includes(game))
