@@ -253,7 +253,7 @@ function formatDateForId(date: string | Date) {
 }
 
 .expandable.open .expandable-content {
-    max-height: 500px;
+    max-height: none;
     /* Adjust this value based on the expected content height */
 }
 
