@@ -63,7 +63,7 @@
                     </div>
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <div class="expandable-content">
-                        <router-link v-for="(game, index) in user.wins" :key="index" :to="{
+                        <router-link v-for="(game, index) in user.losses" :key="index" :to="{
                             name: 'RaceResults',
                             hash: '#event-' + formatDateForId(game.date)
                         }" class="result-item-link">
@@ -92,7 +92,7 @@
 
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <div class="expandable-content">
-                        <router-link v-for="(game, index) in user.wins" :key="index" :to="{
+                        <router-link v-for="(game, index) in user.numRaces" :key="index" :to="{
                             name: 'RaceResults',
                             hash: '#event-' + formatDateForId(game.date)
                         }" class="result-item-link">

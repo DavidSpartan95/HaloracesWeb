@@ -68,6 +68,8 @@
 import { ref, computed } from 'vue';
 import { relayEvents } from '../data/relayEvents'
 import type { Game, PlayerResult, TeamName } from '../data/relayEvents'
+import { onMounted, watch, nextTick } from 'vue';
+import { useRoute } from 'vue-router';
 
 const selectedSort = ref('new');
 
@@ -100,7 +102,7 @@ const sortedRelayEvents = computed(() => {
   }
 });
 
-function formatDateForId(date: string|Date) {
+function formatDateForId(date: string | Date) {
   // turn “2025‑05‑15T12:00:00Z” (or Date) into “2025-05-15”
   const d = typeof date === 'string' ? new Date(date) : date;
   return d.toISOString().slice(0, 10);
@@ -127,6 +129,33 @@ function teamClass(team: TeamName) {
     default: return ''
   }
 }
+
+const route = useRoute();
+
+/**
+ * If there's a hash, find the element and give it the
+ * .flash-highlight class (removed automatically on animationend).
+ */
+function flashCard() {
+  nextTick(() => {
+    if (!route.hash) return;
+    const el = document.querySelector(route.hash);
+    if (el instanceof HTMLElement) {
+      el.classList.add('flash-highlight');
+      // remove after animation completes
+      el.addEventListener(
+        'animationend',
+        () => el.classList.remove('flash-highlight'),
+        { once: true }
+      );
+    }
+  });
+}
+
+// run on first mount
+onMounted(flashCard);
+// run again whenever the hash changes
+watch(() => route.hash, flashCard);
 </script>
 
 <style scoped>
@@ -337,5 +366,21 @@ function teamClass(team: TeamName) {
     background-position: right 12px center;
     background-size: 12px 8px;
   }
+
+  /* define the flash keyframes (you can tweak colors/duration) */
+  @keyframes flash-highlight {
+    0% {
+      box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.8);
+    }
+
+    100% {
+      box-shadow: none;
+    }
+  }
+
+  .flash-highlight {
+    animation: flash-highlight 5s ease-out;
+  }
+
 }
 </style>
