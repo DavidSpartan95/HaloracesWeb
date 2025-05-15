@@ -48,7 +48,7 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }}
+                                }} - {{ game.difficulty }} - {{gamesPlayedAtRaceAsString(user.name,game.playerResults)  }}
                             </p>
                         </router-link>
                     </div>
@@ -75,7 +75,7 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }}
+                                }} - {{ game.difficulty }} - {{gamesPlayedAtRaceAsString(user.name,game.playerResults)  }}
                             </p>
                         </router-link>
                     </div>
@@ -104,7 +104,7 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }}
+                                }} - {{ game.difficulty }} - {{gamesPlayedAtRaceAsString(user.name,game.playerResults)  }}
                             </p>
                         </router-link>
                     </div>
@@ -121,6 +121,7 @@
 import { useRoute } from 'vue-router';
 import { computed, ref } from 'vue';
 import { users } from '../data/users';
+import type { Game, PlayerResult } from '../data/relayEvents';
 
 const route = useRoute();
 const username = route.params.username as string;
@@ -144,6 +145,30 @@ function formatDateForId(date: string | Date) {
     const d = typeof date === 'string' ? new Date(date) : date;
     return d.toISOString().slice(0, 10);
 }
+
+function gamesPlayedAtRaceAsString(
+  username: string,
+  results: PlayerResult[]
+): string {
+  // 1) find all PlayerResult entries for that user
+  const entries = results.filter(p => p.name === username);
+  if (entries.length === 0) return '';
+
+  // 2) accumulate all playedGames without flatMap
+  const allGames: Game[] = [];
+  for (const entry of entries) {
+    for (const g of entry.playedGames) {
+      allGames.push(g);
+    }
+  }
+
+  // 3) remove duplicates
+  const uniqueGames = Array.from(new Set(allGames));
+
+  // 4) return as comma‑separated string
+  return uniqueGames.join(', ');
+}
+
 </script>
 
 <style scoped>
