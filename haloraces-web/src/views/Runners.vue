@@ -24,7 +24,7 @@
 
 
       <li v-for="(user, index) in sortedUsers" :key="index"
-        :class="['user-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+        :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
 
 
 
@@ -117,7 +117,7 @@ const sortedUsers = computed(() => {
   text-align: center;
 }
 
-.user-item {
+.result-item {
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -126,7 +126,7 @@ const sortedUsers = computed(() => {
 
 }
 
-.user-item:hover {
+.result-item:hover {
   background-color: #001f4d;
 }
 

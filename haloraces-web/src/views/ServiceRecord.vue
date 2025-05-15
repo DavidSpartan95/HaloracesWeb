@@ -1,52 +1,96 @@
 <template>
     <div v-if="user" class="service-record">
-        <h3>{{ user?.name }}</h3>
 
         <div class="service-record-layout">
             <div class="record-sum">
                 <div>
+                    <h2>{{ user?.name }}</h2>
                     <h2>Service Record</h2>
-                    <p v-for="(count, game) in user.gameCount" :key="game">
-                        {{ game }}: {{ count }}
-                    </p>
+                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
+                    <p>First Relay Race: {{ new Date(user.firstRelayRace).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit'
+                    }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2') }}</p>
+                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
+                    <h4>Play Count Per Game</h4>
                     <p>Races: {{ user.numRaces.length }}</p>
                     <p>Wins: {{ user.wins.length }}</p>
                     <p>Losses: {{ user.losses.length }}</p>
-                    <p>First Relay Race: {{ user.firstRelayRace.toDateString() }}</p>
+                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
+                    <h4>Play Count Per Game</h4>
+                    <p v-for="(count, game) in user.gameCount" :key="game">
+                        {{ game }}: {{ count }} 
+                    </p>
                 </div>
             </div>
+
             <div class="stat-layout">
                 <div class="stat-box expandable" :class="{ 'open': openWins }">
-                    <h2>wins</h2>
-                    <button @click="toggleWins">
-                        {{ openWins ? '-' : '+' }}
-                    </button>
-                    <div class="expandable-content">
-                        <p v-for="(game, index) in user.wins" :key="index">
-                            {{ game.year }} {{ game.difficulty }}
-                        </p>
-                    </div>
-                </div>
-                <div class="stat-box expandable" :class="{ 'open': openLosses }">
-                    <h2>losses</h2>
-                    <button @click="toggleLosses">
-                        {{ openLosses  ? '-' : '+' }}
-                    </button>
-                    <div class="expandable-content">
-                        <p v-for="(game, index) in user.losses" :key="index">
-                            {{ game.year }} {{ game.difficulty }}
-                        </p>
+                    <div style="display:flex; justify-content: space-between; align-items: center; width:100%;">
+                        <h2>Wins</h2>
+                        <button @click="toggleWins">
+                            {{ openWins ? '-' : '+' }}
+                        </button>
                     </div>
 
-                </div>
-                <div class="stat-box expandable" :class="{ 'open': openAll }">
-                    <h2>all</h2>
-                    <button @click="toggleAll">
-                        {{ openAll ? '-' : '+' }}
-                    </button>
+                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <div class="expandable-content">
-                        <p v-for="(game, index) in user.numRaces" :key="index">
-                            {{ game.year }} {{ game.difficulty }}
+                        <p v-for="(game, index) in user.wins" :key="index"
+                            :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                            {{
+                                new Date(game.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: '2-digit'
+                                }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+                            }} - {{ game.difficulty }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-box expandable" :class="{ 'open': openLosses }">
+                    <div style="display:flex; justify-content: space-between; align-items: center; width:100%;">
+                        <h2>Losses</h2>
+                        <button @click="toggleLosses">
+                            {{ openLosses ? '-' : '+' }}
+                        </button>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
+                    <div class="expandable-content">
+                        <p v-for="(game, index) in user.losses" :key="index"
+                            :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                            {{
+                                new Date(game.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: '2-digit'
+                                }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+                            }} - {{ game.difficulty }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-box expandable" :class="{ 'open': openAll }">
+
+                    <div style="display:flex; justify-content: space-between; align-items: center; width:100%;">
+                        <h2>All Races</h2>
+                        <button @click="toggleAll">
+                            {{ openAll ? '-' : '+' }}
+                        </button>
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
+                    <div class="expandable-content">
+                        <p v-for="(game, index) in user.numRaces" :key="index"
+                            :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                            {{
+                                new Date(game.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: '2-digit'
+                                }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
+                            }} - {{ game.difficulty }}
                         </p>
                     </div>
                 </div>
@@ -68,35 +112,53 @@ const username = route.params.username as string;
 
 const user = computed(() => users.find(u => u.name === username));
 
-const openWins = ref(false);
+const openWins = ref(true);
 const toggleWins = () => {
     openWins.value = !openWins.value;
 };
-const openLosses = ref(false);
+const openLosses = ref(true);
 const toggleLosses = () => {
     openLosses.value = !openLosses.value;
 };
-const openAll = ref(false);
+const openAll = ref(true);
 const toggleAll = () => {
     openAll.value = !openAll.value;
 };
 </script>
 
 <style scoped>
+.bg-blue {
+    background: #0F1832;
+}
+
+.bg-black {
+    background: #131313;
+}
+
+.result-item {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+
+}
+
 .service-record {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.6rem;
+    padding-top: 2rem;
 }
 
 .stat-layout {
+    flex: 1;
+    /* take all remaining width */
     display: flex;
     flex-direction: column;
-    margin-left: 0;
-    margin-right: auto;
     gap: 0.6rem;
-    align-items: center;
-    /* centers horizontally */
+    align-items: stretch;
 }
 
 .service-record-layout {
@@ -105,33 +167,49 @@ const toggleAll = () => {
     flex-direction: row;
     flex-wrap: wrap;
     /* allows wrapping */
+    gap: 0.6rem;
     height: 30rem;
 
 }
 
 .record-sum {
     padding: 2rem;
-    max-width: 200px;
     min-width: 200px;
     border-radius: 20px;
     border: 1px solid rgba(161, 161, 161, 0.50);
     background: #0F1832;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
+    align-self: flex-start;
+
+}
+.record-sum p {
+    color: #E08916
 }
 
 .stat-box {
-    padding: 2rem;
-    max-width: 900px;
-    min-width: 600px;
+    padding: 0rem;
+    max-width: 1200px;
+    min-width: 300px;
     border-radius: 20px;
     border: 1px solid rgba(161, 161, 161, 0.50);
     background: #0F1832;
     flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
+    flex: 1 1 auto;
 
+}
+
+.stat-box p {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    color: #E08916;
+}
+
+.stat-box h2 {
+    padding-left: 1rem;
+}
+
+.stat-box button {
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 .expandable button {
@@ -150,6 +228,7 @@ const toggleAll = () => {
     transition: max-height 0.3s ease-in-out;
     /* Smooth vertical expand/collapse */
     margin-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .expandable.open .expandable-content {
@@ -161,11 +240,27 @@ const toggleAll = () => {
     margin-bottom: 0.5rem;
 }
 
+
 @media (min-width: 1300px) {
     .service-record-layout {
         width: 1300px;
         display: flex;
         flex-direction: row;
+    }
+}
+
+@media (max-width: 607px) {
+    .record-sum {
+        padding: 2rem;
+        max-width: 1200px;
+        min-width: 200px;
+        border-radius: 20px;
+        border: 1px solid rgba(161, 161, 161, 0.50);
+        background: #0F1832;
+        align-self: flex-start;
+        flex-basis: auto;
+        flex: 1 1 auto;
+
     }
 }
 </style>

@@ -21,14 +21,15 @@
       </div>
     </div>
     <div class="centered-container">
-      <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card">
+      <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card"
+        :id="`event-${event.date.toDateString}`">
         <h2>{{
           new Date(event.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
             day: '2-digit'
           }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-          }} - {{ event.difficulty }}</h2>
+        }} - {{ event.difficulty }}</h2>
         <p class="winner">
           🏆 WINNING TEAM:
           <span :class="teamClass(event.winningTeam)">{{ event.winningTeam.toUpperCase() }}</span>
@@ -67,8 +68,6 @@
 import { ref, computed } from 'vue';
 import { relayEvents } from '../data/relayEvents'
 import type { Game, PlayerResult, TeamName } from '../data/relayEvents'
-
-
 
 const selectedSort = ref('new');
 
@@ -130,7 +129,8 @@ function teamClass(team: TeamName) {
 .centered-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers horizontally */
+  align-items: center;
+  /* centers horizontally */
 }
 
 .bg-black {
