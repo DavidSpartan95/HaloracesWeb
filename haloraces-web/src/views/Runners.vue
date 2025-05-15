@@ -24,12 +24,17 @@
 
 
       <li v-for="(user, index) in sortedUsers" :key="index"
-        :class="['user-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+        :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+
+
+
         <div class="user-stats">
-          <span class="user-name">{{ user.name }}</span>
-          <span class="user-stat">{{ user.wins }}</span>
-          <span class="user-stat">{{ user.losses }}</span>
-          <span class="user-stat">{{ user.numRaces }}</span>
+          <router-link :to="`/service-record/${user.name}`" class="user-name">
+            <span>{{ user.name }}</span>
+          </router-link>
+          <span class="user-stat">{{ user.wins.length }}</span>
+          <span class="user-stat">{{ user.losses.length }}</span>
+          <span class="user-stat">{{ user.numRaces.length }}</span>
         </div>
       </li>
 
@@ -49,11 +54,11 @@ const sortedUsers = computed(() => {
   const sorted = [...users];
   switch (selectedSort.value) {
     case 'wins':
-      return sorted.sort((a, b) => b.wins - a.wins);
+      return sorted.sort((a, b) => b.wins.length - a.wins.length);
     case 'losses':
-      return sorted.sort((a, b) => b.losses - a.losses);
+      return sorted.sort((a, b) => b.losses.length - a.losses.length);
     case 'numRaces':
-      return sorted.sort((a, b) => b.numRaces - a.numRaces);
+      return sorted.sort((a, b) => b.numRaces.length - a.numRaces.length);
     default:
       return sorted.sort((a, b) => a.name.localeCompare(b.name));
   }
@@ -112,7 +117,7 @@ const sortedUsers = computed(() => {
   text-align: center;
 }
 
-.user-item {
+.result-item {
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -121,7 +126,7 @@ const sortedUsers = computed(() => {
 
 }
 
-.user-item:hover {
+.result-item:hover {
   background-color: #001f4d;
 }
 

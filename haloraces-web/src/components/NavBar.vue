@@ -8,9 +8,9 @@
       </div>
 
       <div class="nav-center">
-        <router-link to="home" class="nav-link">Home</router-link>
-        <router-link to="runners" class="nav-link">Runners</router-link>
-        <router-link to="race-results" class="nav-link">Race Results</router-link>
+        <router-link to="/home" class="nav-link">Home</router-link>
+        <router-link to="/runners" class="nav-link">Runners</router-link>
+        <router-link to="/race-results" class="nav-link">Race Results</router-link>
       </div>
 
       <div class="nav-img">
@@ -27,9 +27,9 @@
 
     <div v-if="sidebarOpen" class="sidebar">
       <button class="close-btn" @click="toggleSidebar">×</button>
-      <router-link to="home" class="sidebar-link" @click="toggleSidebar">Home</router-link>
-      <router-link to="runners" class="sidebar-link" @click="toggleSidebar">Runners</router-link>
-      <router-link to="race-results" class="sidebar-link" @click="toggleSidebar">Race Results</router-link>
+      <router-link to="/home" class="sidebar-link" @click="toggleSidebar">Home</router-link>
+      <router-link to="/runners" class="sidebar-link" @click="toggleSidebar">Runners</router-link>
+      <router-link to="/race-results" class="sidebar-link" @click="toggleSidebar">Race Results</router-link>
     </div>
   </nav>
 </template>

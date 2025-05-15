@@ -1,50 +1,55 @@
 import type { Game, RelayEvent } from "./relayEvents";
-import {relayEvents} from "./relayEvents";
+import { relayEvents } from "./relayEvents";
 
 export interface User {
     name: string;
-    numRaces: number;
-    wins: number;
-    losses: number;
+    numRaces: RelayEvent[];   // Array of RelayEvents the user participated in
+    wins: RelayEvent[];       // Array of RelayEvents the user won
+    losses: RelayEvent[];     // Array of RelayEvents the user lost
     firstRelayRace: Date;
-    gameCount: { [game in Game]?: number }; // Track count per game
+    gameCount: { [game in Game]?: number };  // Track count per game
 }
+
 
 // Function to generate user stats 
 function generateUserStats(relayEvents: RelayEvent[]): User[] {
     const users: { [name: string]: User } = {};
 
-    relayEvents.forEach((event) => {
-        event.playerResults.forEach((playerResult) => {
+    relayEvents.forEach(event => {
+        event.playerResults.forEach(playerResult => {
             const { name, win, playedGames } = playerResult;
-
-            // Split names by "&" and trim spaces
             const splitNames = name.split("&").map(n => n.trim());
 
-            splitNames.forEach((userName) => {
-                // Initialize user if not already present
-                if (!users[userName]) {
-                    users[userName] = {
-                        name: userName,
-                        numRaces: 1,
-                        wins: win ? 1 : 0,
-                        losses: win ? 0 : 1,
-                        firstRelayRace: event.date,
-                        gameCount: playedGames.reduce((acc, game) => {
-                            acc[game] = (acc[game] || 0) + 1;
-                            return acc;
-                        }, {} as { [game in Game]?: number }),
-                    };
-                } else {
-                    // Update existing user's stats
-                    users[userName].numRaces += 1;
-                    users[userName].wins += win ? 1 : 0;
-                    users[userName].losses += win ? 0 : 1;
+            splitNames.forEach(userName => {
+                const u = users[userName] ||= {
+                    name: userName,
+                    numRaces: [],
+                    wins: [],
+                    losses: [],
+                    firstRelayRace: event.date,
+                    gameCount: {}
+                };
 
-                    // Update the game count
-                    playedGames.forEach((game) => {
-                        users[userName].gameCount[game] = (users[userName].gameCount[game] || 0) + 1;
-                    });
+                // 1) only add the race once:
+                if (!u.numRaces.includes(event)) {
+                    u.numRaces.push(event);
+                }
+
+                // 2) only add to wins or losses once:
+                if (win) {
+                    if (!u.wins.includes(event)) u.wins.push(event);
+                } else {
+                    if (!u.losses.includes(event)) u.losses.push(event);
+                }
+
+                // 3) always increment gameCount for *each* game they played:
+                playedGames.forEach(game => {
+                    u.gameCount[game] = (u.gameCount[game] || 0) + 1;
+                });
+
+                // 4) update firstRelayRace if this event is earlier:
+                if (event.date < u.firstRelayRace) {
+                    u.firstRelayRace = event.date;
                 }
             });
         });
@@ -52,6 +57,7 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
 
     return Object.values(users);
 }
+
 
 
 export const users = generateUserStats(relayEvents);
