@@ -1,5 +1,5 @@
 import type { Game, RelayEvent } from "./relayEvents";
-import {relayEvents} from "./relayEvents";
+import { relayEvents } from "./relayEvents";
 
 export interface User {
     name: string;
@@ -15,43 +15,41 @@ export interface User {
 function generateUserStats(relayEvents: RelayEvent[]): User[] {
     const users: { [name: string]: User } = {};
 
-    relayEvents.forEach((event) => {
-        event.playerResults.forEach((playerResult) => {
+    relayEvents.forEach(event => {
+        event.playerResults.forEach(playerResult => {
             const { name, win, playedGames } = playerResult;
-
-            // Split names by "&" and trim spaces
             const splitNames = name.split("&").map(n => n.trim());
 
-            splitNames.forEach((userName) => {
-                // Initialize user if not already present
-                if (!users[userName]) {
-                    users[userName] = {
-                        name: userName,
-                        numRaces: [event],  // Store the event in the numRaces array
-                        wins: win ? [event] : [],  // If the user won, store the event in the wins array
-                        losses: win ? [] : [event],  // If the user lost, store the event in the losses array
-                        firstRelayRace: event.date,
-                        gameCount: playedGames.reduce((acc, game) => {
-                            acc[game] = (acc[game] || 0) + 1;
-                            return acc;
-                        }, {} as { [game in Game]?: number }),
-                    };
+            splitNames.forEach(userName => {
+                const u = users[userName] ||= {
+                    name: userName,
+                    numRaces: [],
+                    wins: [],
+                    losses: [],
+                    firstRelayRace: event.date,
+                    gameCount: {}
+                };
+
+                // 1) only add the race once:
+                if (!u.numRaces.includes(event)) {
+                    u.numRaces.push(event);
+                }
+
+                // 2) only add to wins or losses once:
+                if (win) {
+                    if (!u.wins.includes(event)) u.wins.push(event);
                 } else {
-                    // Update existing user's stats
-                    users[userName].numRaces.push(event);  // Add the current event to numRaces
+                    if (!u.losses.includes(event)) u.losses.push(event);
+                }
 
-                    // If the user won, add the event to wins array
-                    if (win) {
-                        users[userName].wins.push(event);
-                    } else {
-                        // If the user lost, add the event to losses array
-                        users[userName].losses.push(event);
-                    }
+                // 3) always increment gameCount for *each* game they played:
+                playedGames.forEach(game => {
+                    u.gameCount[game] = (u.gameCount[game] || 0) + 1;
+                });
 
-                    // Update the game count
-                    playedGames.forEach((game) => {
-                        users[userName].gameCount[game] = (users[userName].gameCount[game] || 0) + 1;
-                    });
+                // 4) update firstRelayRace if this event is earlier:
+                if (event.date < u.firstRelayRace) {
+                    u.firstRelayRace = event.date;
                 }
             });
         });
