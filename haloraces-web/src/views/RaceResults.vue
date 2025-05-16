@@ -41,7 +41,7 @@
           gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
         }">
           <strong></strong> <!-- Placeholder for game name column -->
-          <strong v-for="team in event.teamResults" :key="team.name">{{ team.name }}</strong>
+          <strong v-for="team in sortTeamResults(event.teamResults)" :key="team.name">{{ team.name }}</strong>
         </div>
 
         <!-- Game rows -->
@@ -52,7 +52,7 @@
             gridTemplateColumns: `repeat(${1 + uniqueTeamsForGame(event.playerResults, game).length}, 1fr)`
           }">
           <strong class="game-name">{{ game }}</strong>
-          <span v-for="player in playersForGame(event.playerResults, game)" :key="player.name">
+          <span v-for="player in sortPlayerResults(playersForGame(event.playerResults, game))" :key="player.name">
             {{ player.name }}
           </span>
         </div>
@@ -67,9 +67,23 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { relayEvents } from '../data/relayEvents'
-import type { Game, PlayerResult, TeamName } from '../data/relayEvents'
+import type { Game, PlayerResult,TeamResult } from '../data/relayEvents'
+import { TeamName } from '../data/relayEvents'
 import { onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
+
+function sortTeamResults(results: TeamResult[]): TeamResult[] {
+    const teamOrder: Record<TeamName, number> = {
+        [TeamName.Red]: 0,
+        [TeamName.Blue]: 1,
+        [TeamName.Green]: 2,
+        [TeamName.Gold]: 3
+    };
+
+    return results.sort((a, b) => {
+        return teamOrder[a.name] - teamOrder[b.name];
+    });
+  }
 
 const selectedSort = ref('new');
 
@@ -107,7 +121,18 @@ function formatDateForId(date: string | Date) {
   const d = typeof date === 'string' ? new Date(date) : date;
   return d.toISOString().slice(0, 10);
 }
+function sortPlayerResults(results: PlayerResult[]): PlayerResult[] {
+    const teamOrder: Record<TeamName, number> = {
+        [TeamName.Red]: 0,
+        [TeamName.Blue]: 1,
+        [TeamName.Green]: 2,
+        [TeamName.Gold]: 3
+    };
 
+    return results.sort((a, b) => {
+        return teamOrder[a.team] - teamOrder[b.team];
+    });
+}
 function playersForGame(playerResults: PlayerResult[], game: Game): PlayerResult[] {
   return playerResults.filter(player => player.playedGames.includes(game))
 }
