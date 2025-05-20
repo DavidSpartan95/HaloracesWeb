@@ -61,7 +61,7 @@
           display: 'grid',
           gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
         }">
-          <strong></strong> <!-- Placeholder for game name column -->
+          <strong style="color: #E08916;">{{ event.timeMethod }}</strong> 
           <strong v-for="times in sortTeamResults(event.teamResults)" :key="times.name">{{ times.time }}</strong>
         </div>
 
@@ -412,7 +412,7 @@ watch(() => route.hash, flashCard);
   }
 
   .flash-highlight {
-    animation: flash-highlight 5s ease-out;
+    animation: flash-highlight 5sease-out;
   }
 
 }
