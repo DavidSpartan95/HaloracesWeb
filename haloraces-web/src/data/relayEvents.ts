@@ -800,8 +800,13 @@ export const relayEvents: RelayEvent[] = [
         ],
         source: [
             {
-                name: "Spreadsheet",
+                name: "Meme video containing sources",
                 type: TypeOfSource.Video,
+                link: new URL("https://www.youtube.com/watch?v=PaKm7mi6btY")
+            },
+            {
+                name: "Spreadsheet",
+                type: TypeOfSource.Exel,
                 link: new URL("https://docs.google.com/spreadsheets/d/1XGJM2wfjUPyTc5DKj5Zm0DDNI47zl0hRGYAkMUmw_cs/edit?usp=sharing")
             }
         ],
