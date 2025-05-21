@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div v-if="selectedSort != 'new' && selectedSort != 'oldest'">
       <h3 class="win-counter"> {{ selectedSort.toUpperCase() }} TOTAL WINS {{ sortedRelayEvents.length }}</h3>
 
@@ -22,6 +21,7 @@
     </div>
     <div class="centered-container">
       <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card"
+        @click="openSourcesModal(event)"
         :id="`event-${formatDateForId(event.date)}`">
         <h2>{{
           new Date(event.date).toLocaleDateString('en-US', {
@@ -61,24 +61,26 @@
           display: 'grid',
           gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
         }">
-          <strong style="color: #E08916;">{{ event.timeMethod }}</strong> 
+          <strong style="color: #E08916;">{{ event.timeMethod }}</strong>
           <strong v-for="times in sortTeamResults(event.teamResults)" :key="times.name">{{ times.time }}</strong>
         </div>
 
       </div>
     </div>
-
+    <SourceList v-if="selectedEvent" :event="selectedEvent" @close="selectedEvent = null" />
   </div>
+  
 </template>
 
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { relayEvents } from '../data/relayEvents'
-import type { Game, PlayerResult, TeamResult } from '../data/relayEvents'
+import type { Game, PlayerResult, RelayEvent, TeamResult } from '../data/relayEvents'
 import { TeamName } from '../data/relayEvents'
 import { onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
+import SourceList from '../components/SourceList.vue';
 
 function sortTeamResults(results: TeamResult[]): TeamResult[] {
   const teamOrder: Record<TeamName, number> = {
@@ -91,6 +93,12 @@ function sortTeamResults(results: TeamResult[]): TeamResult[] {
   return results.sort((a, b) => {
     return teamOrder[a.name] - teamOrder[b.name];
   });
+}
+
+const selectedEvent = ref<RelayEvent | null>(null)
+
+function openSourcesModal(event: RelayEvent) {
+  selectedEvent.value = event
 }
 
 const selectedSort = ref('new');
@@ -192,6 +200,7 @@ watch(() => route.hash, flashCard);
 </script>
 
 <style scoped>
+
 .centered-container {
   display: flex;
   flex-direction: column;
@@ -242,6 +251,7 @@ watch(() => route.hash, flashCard);
 }
 
 .event-card {
+  cursor: pointer; /* Add this */
   color: #f1f1f1;
   padding-top: 1.5rem;
   padding-bottom: 48px;

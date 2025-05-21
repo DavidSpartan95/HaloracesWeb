@@ -859,7 +859,7 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Image,
             link: new URL("https://imgur.com/a/B7Cxglj")
         }],
-        "Game Timing": undefined
+        timeMethod: "Game Timing"
     },
     {
         year: 2022,
