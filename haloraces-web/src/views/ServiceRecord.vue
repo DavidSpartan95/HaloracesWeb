@@ -22,6 +22,19 @@
                     <p v-for="(count, game) in user.gameCount" :key="game">
                         {{ game }}: {{ count }}
                     </p>
+                    <h4>Teams Played For</h4>
+                    <p v-if="user.teams.length > 0">
+                        Red Team: {{ countTeamAppearances(user.teams, TeamName.Red) }}
+                    </p>
+                    <p>
+                        Blue Team: {{ countTeamAppearances(user.teams, TeamName.Blue) }}
+                    </p>
+                    <p>
+                        Green Team: {{ countTeamAppearances(user.teams, TeamName.Green) }}
+                    </p>
+                    <p>
+                        Gold Team: {{ countTeamAppearances(user.teams, TeamName.Gold) }}
+                    </p>
                 </div>
             </div>
 
@@ -48,7 +61,8 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - {{gamesPlayedAtRaceAsString(user.name,game.playerResults)  }}
+                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
+                                }}
                             </p>
                         </router-link>
                     </div>
@@ -75,7 +89,8 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - {{gamesPlayedAtRaceAsString(user.name,game.playerResults)  }}
+                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
+                                }}
                             </p>
                         </router-link>
                     </div>
@@ -104,7 +119,8 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - {{gamesPlayedAtRaceAsString(user.name,game.playerResults)  }}
+                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
+                                }}
                             </p>
                         </router-link>
                     </div>
@@ -121,6 +137,7 @@
 import { useRoute } from 'vue-router';
 import { computed, ref } from 'vue';
 import { users } from '../data/users';
+import { TeamName } from '../data/relayEvents';
 import type { Game, PlayerResult } from '../data/relayEvents';
 
 const route = useRoute();
@@ -147,26 +164,30 @@ function formatDateForId(date: string | Date) {
 }
 
 function gamesPlayedAtRaceAsString(
-  username: string,
-  results: PlayerResult[]
+    username: string,
+    results: PlayerResult[]
 ): string {
-  // 1) find all PlayerResult entries for that user
-  const entries = results.filter(p => p.name === username);
-  if (entries.length === 0) return '';
+    // 1) find all PlayerResult entries for that user
+    const entries = results.filter(p => p.name === username);
+    if (entries.length === 0) return '';
 
-  // 2) accumulate all playedGames without flatMap
-  const allGames: Game[] = [];
-  for (const entry of entries) {
-    for (const g of entry.playedGames) {
-      allGames.push(g);
+    // 2) accumulate all playedGames without flatMap
+    const allGames: Game[] = [];
+    for (const entry of entries) {
+        for (const g of entry.playedGames) {
+            allGames.push(g);
+        }
     }
-  }
 
-  // 3) remove duplicates
-  const uniqueGames = Array.from(new Set(allGames));
+    // 3) remove duplicates
+    const uniqueGames = Array.from(new Set(allGames));
 
-  // 4) return as comma‑separated string
-  return uniqueGames.join(', ');
+    // 4) return as comma‑separated string
+    return uniqueGames.join(', ');
+}
+
+function countTeamAppearances(teams: TeamName[], team: TeamName): number {
+    return teams.filter(t => t === team).length;
 }
 
 </script>
