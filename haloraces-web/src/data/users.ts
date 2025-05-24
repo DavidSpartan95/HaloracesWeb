@@ -1,4 +1,4 @@
-import type { Game, RelayEvent } from "./relayEvents";
+import type { Game, RelayEvent, TeamName } from "./relayEvents";
 import { relayEvents } from "./relayEvents";
 
 export interface User {
@@ -8,6 +8,7 @@ export interface User {
     losses: RelayEvent[];     // Array of RelayEvents the user lost
     firstRelayRace: Date;
     gameCount: { [game in Game]?: number };  // Track count per game
+    teams: TeamName[]
 }
 
 
@@ -17,7 +18,7 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
 
     relayEvents.forEach(event => {
         event.playerResults.forEach(playerResult => {
-            const { name, win, playedGames } = playerResult;
+            const { name, win, playedGames, team } = playerResult;
             const splitNames = name.split("&").map(n => n.trim());
 
             splitNames.forEach(userName => {
@@ -27,36 +28,41 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
                     wins: [],
                     losses: [],
                     firstRelayRace: event.date,
-                    gameCount: {}
+                    gameCount: {},
+                    teams: []
                 };
 
-                // 1) only add the race once:
+                // 1) Only add the race once:
                 if (!u.numRaces.includes(event)) {
                     u.numRaces.push(event);
                 }
 
-                // 2) only add to wins or losses once:
+                // 2) Add to wins or losses:
                 if (win) {
                     if (!u.wins.includes(event)) u.wins.push(event);
                 } else {
                     if (!u.losses.includes(event)) u.losses.push(event);
                 }
 
-                // 3) always increment gameCount for *each* game they played:
+                // 3) Track game counts:
                 playedGames.forEach(game => {
                     u.gameCount[game] = (u.gameCount[game] || 0) + 1;
                 });
 
-                // 4) update firstRelayRace if this event is earlier:
+                // 4) Update earliest race:
                 if (event.date < u.firstRelayRace) {
                     u.firstRelayRace = event.date;
                 }
+
+                // 5) Allow duplicate team entries:
+                u.teams.push(team);
             });
         });
     });
 
     return Object.values(users);
 }
+
 
 
 

@@ -50,6 +50,7 @@ export interface RelayEvent {
     teamResults: TeamResult[]
     playerResults: PlayerResult[]
     source?: Source[]
+    timeMethod: String
 }
 
 export interface Source {
@@ -117,7 +118,8 @@ export const relayEvents: RelayEvent[] = [
             name: "Legendary Relay Race 2014",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=vSvVWHNeB38")
-        }]
+        }],
+        timeMethod: "RTA"
     },
     {
         year: 2015,
@@ -255,13 +257,14 @@ export const relayEvents: RelayEvent[] = [
             name: "Screenshot",
             type: TypeOfSource.Image,
             link: new URL("https://gyazo.com/62df449ac666792a653dee7194c994a8")
-            },
+        },
         {
             name: "Discord screenshot",
             type: TypeOfSource.Image,
             link: new URL("https://imgur.com/a/6r3iNYy")
         }
-    ]
+        ],
+        timeMethod: "???"
     },
     {
         year: 2016,
@@ -329,8 +332,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=27bCJW7DvmI")
         }
-    ]
-    
+        ],
+        timeMethod: "RTA"
     },
     {
         year: 2017,
@@ -403,7 +406,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://www.twitch.tv/haloraces/clip/RespectfulBadBatAMPEnergy")
         },
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2018,
@@ -476,7 +480,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://clips.twitch.tv/GiantMiniatureKaleLeeroyJenkins")
         },
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2019,
@@ -538,13 +543,14 @@ export const relayEvents: RelayEvent[] = [
             name: "Easy Relay Race 2019",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=1kd-rDUZ6Mg&t.twitch.tv/SpinelessHomelyKiwiGrammarKing")
-            },
-            {
-                name: "Discord screenshot",
-                type: TypeOfSource.Image,
-                link: new URL("https://imgur.com/a/TUJ41u3")
-            }
-    ]
+        },
+        {
+            name: "Discord screenshot",
+            type: TypeOfSource.Image,
+            link: new URL("https://imgur.com/a/TUJ41u3")
+        }
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2020,
@@ -596,7 +602,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=Ry52QcIjSek&feature=youtu.be")
         }
-    ]
+        ],
+        timeMethod: "RTA"
     },
     {
         year: 2020,
@@ -660,7 +667,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=5zw8l2EVYU8")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2021,
@@ -677,6 +685,7 @@ export const relayEvents: RelayEvent[] = [
         ],
         winningTeam: TeamName.Green,
         teamResults: [
+            { name: TeamName.Red, time: "8:31:41" },
             { name: TeamName.Green, time: "8:26:58" },
             { name: TeamName.Blue, time: "8:43:32" },
         ],
@@ -713,11 +722,12 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=tjApDJ6JrUo")
         },
-            {
+        {
             name: "Spreadsheet",
             type: TypeOfSource.Exel,
             link: new URL("https://docs.google.com/spreadsheets/d/1w6VU02vAcvy9v3CuH6CKVCGt7WJJ8j2wHCNBbaCiz2c/edit?gid=0#gid=0")
-        }]
+        }],
+        timeMethod: "Game Timing"
     },
     {
         year: 2021,
@@ -736,23 +746,23 @@ export const relayEvents: RelayEvent[] = [
         teamResults: [
             {
                 name: TeamName.Red,
-                time: "???",
+                time: "8:00:47",
             },
             {
                 name: TeamName.Green,
-                time: "???",
+                time: "8:05:34",
             },
             {
                 name: TeamName.Blue,
-                time: "???",
+                time: "8:07:22",
             },
             {
                 name: TeamName.Gold,
-                time: "???",
+                time: "8:10:27",
             },
         ],
         playerResults: [
-            // Red Team
+            // Red Team — Winning team
             { name: "Chronos", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
             { name: "ReptilianGamer", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "Zoo", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
@@ -779,7 +789,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Adversary", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
             { name: "Phobic", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
 
-            // Gold Team — Winning team
+            // Gold Team
             { name: "Cambid", team: TeamName.Gold, win: false, playedGames: [Game.HaloCE] },
             { name: "Synyster", team: TeamName.Gold, win: false, playedGames: [Game.Halo2] },
             { name: "Fallenultima", team: TeamName.Gold, win: false, playedGames: [Game.Halo3] },
@@ -789,12 +799,18 @@ export const relayEvents: RelayEvent[] = [
             { name: "BatChat", team: TeamName.Gold, win: false, playedGames: [Game.Halo5] },
         ],
         source: [
-        {
-            name: "Spreadsheet",
-            type: TypeOfSource.Video,
-            link: new URL("https://docs.google.com/spreadsheets/d/1XGJM2wfjUPyTc5DKj5Zm0DDNI47zl0hRGYAkMUmw_cs/edit?usp=sharing")
-        }
-    ]
+            {
+                name: "Meme video containing sources",
+                type: TypeOfSource.Video,
+                link: new URL("https://www.youtube.com/watch?v=PaKm7mi6btY")
+            },
+            {
+                name: "Spreadsheet",
+                type: TypeOfSource.Exel,
+                link: new URL("https://docs.google.com/spreadsheets/d/1XGJM2wfjUPyTc5DKj5Zm0DDNI47zl0hRGYAkMUmw_cs/edit?usp=sharing")
+            }
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2021,
@@ -847,7 +863,8 @@ export const relayEvents: RelayEvent[] = [
             name: "Screenshot from Discord",
             type: TypeOfSource.Image,
             link: new URL("https://imgur.com/a/B7Cxglj")
-        }]
+        }],
+        timeMethod: "Game Timing"
     },
     {
         year: 2022,
@@ -921,7 +938,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Image,
             link: new URL("https://imgur.com/a/Y0htV2a")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2022,
@@ -974,7 +992,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "BatChat", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
             { name: "Dyse", team: TeamName.Blue, win: false, playedGames: [Game.HaloInfinite] },
         ],
-        source:[{
+        source: [{
             name: "HaloRuns Legendary Relay Race 2022 (Part 1/2)",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=O-EUQ3dN7Uw")
@@ -989,7 +1007,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Exel,
             link: new URL("https://docs.google.com/spreadsheets/d/1cSfrLKp1Bw7l7IH8aCMtXfVE7mXFuHqPo5VczRcVgo8/edit?usp=sharing")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2023,
@@ -1042,7 +1061,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "BatChat", team: TeamName.Blue, win: true, playedGames: [Game.Halo5] },
             { name: "Zephrike", team: TeamName.Blue, win: true, playedGames: [Game.HaloInfinite] },
         ],
-        source:[{
+        source: [{
             name: "HaloRuns Annual Easy Relay Race 2023",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=hpkQ-BEtr5Y")
@@ -1057,7 +1076,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Exel,
             link: new URL("https://docs.google.com/spreadsheets/d/1GRZEfdnzRfaYav3rcKh27_I1i30gKo6U092MGsjQcB8/edit?usp=sharing")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2023,
@@ -1102,7 +1122,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "SlothSG", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "Seclusive", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
         ],
-        source:[{
+        source: [{
             name: "HaloRuns Annual Easy Relay Race 2023",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=ta5VJamxWWo")
@@ -1117,7 +1137,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Exel,
             link: new URL("https://docs.google.com/spreadsheets/d/1GRZEfdnzRfaYav3rcKh27_I1i30gKo6U092MGsjQcB8/edit?usp=sharing")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2024,
@@ -1170,7 +1191,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "BatChat", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
             { name: "Lorhey", team: TeamName.Blue, win: false, playedGames: [Game.HaloInfinite] },
         ],
-        source:[{
+        source: [{
             name: "HaloRuns 2024 Easy Relay Race",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=OqCwFLuGvj0")
@@ -1185,7 +1206,8 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Exel,
             link: new URL("https://docs.google.com/spreadsheets/d/1-JndYUg09va8YvkQ4rTMJhiEo1TxMUkJSEkaXX7mptc/edit?usp=sharing")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
     {
         year: 2024,
@@ -1234,7 +1256,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Synyster", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
             { name: "Tunguzka", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
         ],
-        source:[{
+        source: [{
             name: "HaloRuns 2024 Legendary Relay Race",
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=a--rtt0brLc")
@@ -1249,6 +1271,7 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Exel,
             link: new URL("https://docs.google.com/spreadsheets/d/1US75VMsZsdAiWbwLF-g6hmUPFNIKxlbrh9uWmiFm91I/edit?usp=sharing")
         }
-    ]
+        ],
+        timeMethod: "Game Timing"
     },
 ]

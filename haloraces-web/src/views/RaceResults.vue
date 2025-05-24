@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div v-if="selectedSort != 'new' && selectedSort != 'oldest'">
       <h3 class="win-counter"> {{ selectedSort.toUpperCase() }} TOTAL WINS {{ sortedRelayEvents.length }}</h3>
 
@@ -22,6 +21,7 @@
     </div>
     <div class="centered-container">
       <div v-for="(event, index) in sortedRelayEvents" :key="`${event.year}-${index}`" class="event-card"
+        @click="openSourcesModal(event)"
         :id="`event-${formatDateForId(event.date)}`">
         <h2>{{
           new Date(event.date).toLocaleDateString('en-US', {
@@ -57,33 +57,49 @@
           </span>
         </div>
 
+        <div class="game-results-grid" :style="{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${1 + event.teamResults.length}, 1fr)`
+        }">
+          <strong style="color: #E08916;">{{ event.timeMethod }}</strong>
+          <strong v-for="times in sortTeamResults(event.teamResults)" :key="times.name">{{ times.time }}</strong>
+        </div>
+
       </div>
     </div>
-
+    <SourceList v-if="selectedEvent" :event="selectedEvent" @close="selectedEvent = null" />
   </div>
+  
 </template>
 
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { relayEvents } from '../data/relayEvents'
-import type { Game, PlayerResult,TeamResult } from '../data/relayEvents'
+import type { Game, PlayerResult, RelayEvent, TeamResult } from '../data/relayEvents'
 import { TeamName } from '../data/relayEvents'
 import { onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
+import SourceList from '../components/SourceList.vue';
 
 function sortTeamResults(results: TeamResult[]): TeamResult[] {
-    const teamOrder: Record<TeamName, number> = {
-        [TeamName.Red]: 0,
-        [TeamName.Blue]: 1,
-        [TeamName.Green]: 2,
-        [TeamName.Gold]: 3
-    };
+  const teamOrder: Record<TeamName, number> = {
+    [TeamName.Red]: 0,
+    [TeamName.Blue]: 1,
+    [TeamName.Green]: 2,
+    [TeamName.Gold]: 3
+  };
 
-    return results.sort((a, b) => {
-        return teamOrder[a.name] - teamOrder[b.name];
-    });
-  }
+  return results.sort((a, b) => {
+    return teamOrder[a.name] - teamOrder[b.name];
+  });
+}
+
+const selectedEvent = ref<RelayEvent | null>(null)
+
+function openSourcesModal(event: RelayEvent) {
+  selectedEvent.value = event
+}
 
 const selectedSort = ref('new');
 
@@ -122,16 +138,16 @@ function formatDateForId(date: string | Date) {
   return d.toISOString().slice(0, 10);
 }
 function sortPlayerResults(results: PlayerResult[]): PlayerResult[] {
-    const teamOrder: Record<TeamName, number> = {
-        [TeamName.Red]: 0,
-        [TeamName.Blue]: 1,
-        [TeamName.Green]: 2,
-        [TeamName.Gold]: 3
-    };
+  const teamOrder: Record<TeamName, number> = {
+    [TeamName.Red]: 0,
+    [TeamName.Blue]: 1,
+    [TeamName.Green]: 2,
+    [TeamName.Gold]: 3
+  };
 
-    return results.sort((a, b) => {
-        return teamOrder[a.team] - teamOrder[b.team];
-    });
+  return results.sort((a, b) => {
+    return teamOrder[a.team] - teamOrder[b.team];
+  });
 }
 function playersForGame(playerResults: PlayerResult[], game: Game): PlayerResult[] {
   return playerResults.filter(player => player.playedGames.includes(game))
@@ -185,10 +201,10 @@ watch(() => route.hash, flashCard);
 
 <style scoped>
 .centered-container {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* centers horizontally */
 }
 
 .bg-black {
@@ -197,20 +213,13 @@ watch(() => route.hash, flashCard);
 
 .game-results-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
-  font-size: 1.0rem;
-
+  font-size: 1rem;
   column-gap: 1rem;
-
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 0;
   align-items: center;
 }
-
-
-
 
 .title {
   color: #FFF;
@@ -234,15 +243,15 @@ watch(() => route.hash, flashCard);
 }
 
 .event-card {
+  cursor: pointer;
   color: #f1f1f1;
   padding-top: 1.5rem;
   padding-bottom: 48px;
-  border-radius: 12px;
-  margin-bottom: 2rem;
   border-radius: 20px;
+  margin-bottom: 2rem;
   width: 100%;
   max-width: 1200px;
-  border: 1px solid rgba(161, 161, 161, 0.50);
+  border: 1px solid rgba(161, 161, 161, 0.5);
   background: #0F1832;
   text-align: center;
 }
@@ -285,7 +294,7 @@ watch(() => route.hash, flashCard);
   font-size: 0.95rem;
 }
 
-/* Team Colors - work in both themes */
+/* Team Colors */
 .green-team {
   color: #38F803;
   font-weight: bold;
@@ -310,102 +319,71 @@ watch(() => route.hash, flashCard);
   font-size: large;
 }
 
-/* 🌙 Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .event-card {
-    background-color: #0F1832;
-    color: #f1f1f1;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+.sort {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 60px;
+}
+
+.sort-text {
+  color: #FCFCFC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f1f1f1;
+}
+
+.sort-controls select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #E08916;
+  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: 12px;
+  border: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 10,0 5,6' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+}
+
+/* Highlight animation */
+@keyframes flash-highlight {
+  0% {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.8);
   }
-
-  .green-team {
-    color: #38F803;
-    font-weight: bold;
-    font-size: large;
+  100% {
+    box-shadow: none;
   }
+}
 
-  .gold-team {
-    color: #FFFF00;
-    font-weight: bold;
-    font-size: large;
-  }
+.flash-highlight {
+  animation: flash-highlight 5s ease-out;
+}
 
-  .red-team {
-    color: #FF3131;
-    font-weight: bold;
-    font-size: large;
-  }
-
-  .blue-team {
-    color: #05b0ff;
-    font-weight: bold;
-    font-size: large;
-  }
-
-  .sort {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 32px;
-    display: flex;
-    justify-content: flex-end;
-    /* aligns content to the right */
-    align-items: center;
-    /* centers content vertically */
-    height: 60px;
-    /* optional: gives it a height to center within */
-  }
-
-  .sort-text {
-    color: #FCFCFC;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-  }
-
-  .sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    color: #f1f1f1;
-  }
-
-  .sort-controls select {
-    appearance: none;
-    /* Remove default arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    background-color: #E08916;
-    color: #ffffff;
-    padding: 12px 30px 12px 30px;
-    /* extra right padding for arrow space */
-    border-radius: 12px;
-    border: none;
-
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 10,0 5,6' fill='white'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px 8px;
-  }
-
-  /* define the flash keyframes (you can tweak colors/duration) */
-  @keyframes flash-highlight {
-    0% {
-      box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.8);
-    }
-
-    100% {
-      box-shadow: none;
-    }
-  }
-
-  .flash-highlight {
-    animation: flash-highlight 5s ease-out;
-  }
-
+@media (max-width: 670px) {
+  .event-card p,
+  .event-card strong,
+  .event-card span {
+  font-size: 0.6rem; /* Adjust this value as needed */
+}
+.event-card h2{
+  font-size: 1.2rem;
+}
 }
 </style>
