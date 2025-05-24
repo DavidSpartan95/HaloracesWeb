@@ -200,12 +200,11 @@ watch(() => route.hash, flashCard);
 </script>
 
 <style scoped>
-
 .centered-container {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* centers horizontally */
 }
 
 .bg-black {
@@ -214,20 +213,13 @@ watch(() => route.hash, flashCard);
 
 .game-results-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
-  font-size: 1.0rem;
-
+  font-size: 1rem;
   column-gap: 1rem;
-
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 0;
   align-items: center;
 }
-
-
-
 
 .title {
   color: #FFF;
@@ -251,16 +243,15 @@ watch(() => route.hash, flashCard);
 }
 
 .event-card {
-  cursor: pointer; /* Add this */
+  cursor: pointer;
   color: #f1f1f1;
   padding-top: 1.5rem;
   padding-bottom: 48px;
-  border-radius: 12px;
-  margin-bottom: 2rem;
   border-radius: 20px;
+  margin-bottom: 2rem;
   width: 100%;
   max-width: 1200px;
-  border: 1px solid rgba(161, 161, 161, 0.50);
+  border: 1px solid rgba(161, 161, 161, 0.5);
   background: #0F1832;
   text-align: center;
 }
@@ -303,7 +294,7 @@ watch(() => route.hash, flashCard);
   font-size: 0.95rem;
 }
 
-/* Team Colors - work in both themes */
+/* Team Colors */
 .green-team {
   color: #38F803;
   font-weight: bold;
@@ -328,102 +319,60 @@ watch(() => route.hash, flashCard);
   font-size: large;
 }
 
-/* 🌙 Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .event-card {
-    background-color: #0F1832;
-    color: #f1f1f1;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+.sort {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 60px;
+}
+
+.sort-text {
+  color: #FCFCFC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f1f1f1;
+}
+
+.sort-controls select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #E08916;
+  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: 12px;
+  border: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 10,0 5,6' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+}
+
+/* Highlight animation */
+@keyframes flash-highlight {
+  0% {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.8);
   }
-
-  .green-team {
-    color: #38F803;
-    font-weight: bold;
-    font-size: large;
+  100% {
+    box-shadow: none;
   }
+}
 
-  .gold-team {
-    color: #FFFF00;
-    font-weight: bold;
-    font-size: large;
-  }
-
-  .red-team {
-    color: #FF3131;
-    font-weight: bold;
-    font-size: large;
-  }
-
-  .blue-team {
-    color: #05b0ff;
-    font-weight: bold;
-    font-size: large;
-  }
-
-  .sort {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 32px;
-    display: flex;
-    justify-content: flex-end;
-    /* aligns content to the right */
-    align-items: center;
-    /* centers content vertically */
-    height: 60px;
-    /* optional: gives it a height to center within */
-  }
-
-  .sort-text {
-    color: #FCFCFC;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-  }
-
-  .sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    color: #f1f1f1;
-  }
-
-  .sort-controls select {
-    appearance: none;
-    /* Remove default arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    background-color: #E08916;
-    color: #ffffff;
-    padding: 12px 30px 12px 30px;
-    /* extra right padding for arrow space */
-    border-radius: 12px;
-    border: none;
-
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 10,0 5,6' fill='white'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px 8px;
-  }
-
-  /* define the flash keyframes (you can tweak colors/duration) */
-  @keyframes flash-highlight {
-    0% {
-      box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.8);
-    }
-
-    100% {
-      box-shadow: none;
-    }
-  }
-
-  .flash-highlight {
-    animation: flash-highlight 5s ease-out;
-  }
-
+.flash-highlight {
+  animation: flash-highlight 5s ease-out;
 }
 </style>
