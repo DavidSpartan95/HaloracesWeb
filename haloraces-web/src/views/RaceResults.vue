@@ -422,7 +422,7 @@ watch(() => route.hash, flashCard);
   }
 
   .flash-highlight {
-    animation: flash-highlight 5sease-out;
+    animation: flash-highlight 5s ease-out;
   }
 
 }
