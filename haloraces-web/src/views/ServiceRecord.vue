@@ -23,7 +23,7 @@
                         {{ game }}: {{ count }}
                     </p>
                     <h4>Teams Played For</h4>
-                    <p v-if="user.teams.length > 0">
+                    <p>
                         Red Team: {{ countTeamAppearances(user.teams, TeamName.Red) }}
                     </p>
                     <p>
@@ -54,15 +54,14 @@
                             hash: '#event-' + formatDateForId(game.date)
                         }" class="result-item-link">
 
-                            <p :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                            <p :class="[ index % 2 === 0 ? 'bg-blue' : 'bg-black']">
                                 {{
                                     new Date(game.date).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
-                                }}
+                                }} - {{ game.difficulty }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
                             </p>
                         </router-link>
                     </div>
@@ -82,7 +81,7 @@
                             hash: '#event-' + formatDateForId(game.date)
                         }" class="result-item-link">
 
-                            <p :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                            <p :class="[ index % 2 === 0 ? 'bg-blue' : 'bg-black']">
                                 {{
                                     new Date(game.date).toLocaleDateString('en-US', {
                                         year: 'numeric',
@@ -90,7 +89,7 @@
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
                                 }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
-                                }}
+                                }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
                             </p>
                         </router-link>
                     </div>
@@ -112,15 +111,14 @@
                             hash: '#event-' + formatDateForId(game.date)
                         }" class="result-item-link">
 
-                            <p :class="['result-item', index % 2 === 0 ? 'bg-blue' : 'bg-black']">
+                            <p :class="[index % 2 === 0 ? 'bg-blue' : 'bg-black']">
                                 {{
                                     new Date(game.date).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
-                                }}
+                                }} - {{ game.difficulty }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
                             </p>
                         </router-link>
                     </div>
@@ -138,7 +136,7 @@ import { useRoute } from 'vue-router';
 import { computed, ref } from 'vue';
 import { users } from '../data/users';
 import { TeamName } from '../data/relayEvents';
-import type { Game, PlayerResult } from '../data/relayEvents';
+import type { Game, PlayerResult, RelayEvent } from '../data/relayEvents';
 
 const route = useRoute();
 const username = route.params.username as string;
@@ -161,6 +159,11 @@ function formatDateForId(date: string | Date) {
     // turn “2025‑05‑15T12:00:00Z” (or Date) into “2025-05-15”
     const d = typeof date === 'string' ? new Date(date) : date;
     return d.toISOString().slice(0, 10);
+}
+
+function getUserTeamInEvent(username: string, event: RelayEvent): string  {
+    const player = event.playerResults.find(p => p.name.toLowerCase() === username.toLowerCase())
+    return player ? player.team.toString() : "Not found"
 }
 
 function gamesPlayedAtRaceAsString(
@@ -190,9 +193,36 @@ function countTeamAppearances(teams: TeamName[], team: TeamName): number {
     return teams.filter(t => t === team).length;
 }
 
+function teamColor(team: string) {
+  switch (team) {
+    case 'Green': return 'green-team'
+    case 'Gold': return 'gold-team'
+    case 'Red': return 'red-team'
+    case 'Blue': return 'blue-team'
+    default: return ''
+  }
+}
+
 </script>
 
 <style scoped>
+/* Team Colors */
+.green-team {
+  color: #38F803;
+}
+
+.gold-team {
+  color: #FFFF00;
+}
+
+.red-team {
+  color: #FF3131;
+}
+
+.blue-team {
+  color: #05b0ff;
+}
+
 .bg-blue {
     background: #0F1832;
 }
@@ -201,16 +231,8 @@ function countTeamAppearances(teams: TeamName[], team: TeamName): number {
     background: #131313;
 }
 
-.result-item {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-
-}
-
 .service-record {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
