@@ -375,4 +375,15 @@ watch(() => route.hash, flashCard);
 .flash-highlight {
   animation: flash-highlight 5s ease-out;
 }
+
+@media (max-width: 670px) {
+  .event-card p,
+  .event-card strong,
+  .event-card span {
+  font-size: 0.6rem; /* Adjust this value as needed */
+}
+.event-card h2{
+  font-size: 1.2rem;
+}
+}
 </style>
