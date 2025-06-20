@@ -193,16 +193,6 @@ function countTeamAppearances(teams: TeamName[], team: TeamName): number {
     return teams.filter(t => t === team).length;
 }
 
-function teamColor(team: string) {
-  switch (team) {
-    case 'Green': return 'green-team'
-    case 'Gold': return 'gold-team'
-    case 'Red': return 'red-team'
-    case 'Blue': return 'blue-team'
-    default: return ''
-  }
-}
-
 </script>
 
 <style scoped>

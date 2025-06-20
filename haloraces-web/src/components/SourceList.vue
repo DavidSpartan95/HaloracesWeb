@@ -17,7 +17,7 @@
                     class="img" />
                 <img v-else-if="source.type === TypeOfSource.Exel" src="../assets/sheets-icon.png" alt="Video"
                     class="img" />
-                <img v-else src="../assets/other-icon.png" alt="Other" class="img" />
+                <img v-else src="../assets/vue.svg" alt="Other" class="img" />
                 <a :href="source.link.toString()" target="_blank">
                     {{ source.name }}
                 </a>
@@ -41,13 +41,6 @@ function handleOverlayClick(event: MouseEvent) {
     }
 }
 
-const iconMap: Record<TypeOfSource | 'default', { src: string; alt: string }> = {
-    [TypeOfSource.Video]: { src: '../assets/video-icon.png', alt: 'Video' },
-    [TypeOfSource.Image]: { src: '../assets/image-icon.png', alt: 'Image' },
-    [TypeOfSource.Exel]: { src: '../assets/sheets-icon.png', alt: 'Excel' },
-    [TypeOfSource.Other]: { src: '../assets/other-icon.png', alt: 'Other' }, // <-- add this
-    default: { src: '../assets/video-icon.png', alt: 'Other' },
-}
 
 
 const props = defineProps<{
