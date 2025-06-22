@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import {computed } from 'vue';
 import { TeamName, relayEvents } from '../data/relayEvents';
 
 // Step 1: Get all team names you want to count

@@ -901,7 +901,7 @@ export const relayEvents: RelayEvent[] = [
             // Green Team
             { name: "Cambid", team: TeamName.Green, win: true, playedGames: [Game.HaloCE] },
             { name: "Trouble", team: TeamName.Green, win: true, playedGames: [Game.Halo2] },
-            { name: "TheIncomeTaxes", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
+            { name: "Hyperloop", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
             { name: "Wingman", team: TeamName.Green, win: true, playedGames: [Game.Halo3ODST] },
             { name: "Danos", team: TeamName.Green, win: true, playedGames: [Game.HaloReach] },
             { name: "Mourie", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
@@ -1034,7 +1034,7 @@ export const relayEvents: RelayEvent[] = [
             // Red Team
             { name: "NervyDestroyer", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
             { name: "Sleek", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
-            { name: "TheIncomeTaxes", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
+            { name: "Hyperloop", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
             { name: "Rhylum", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
             { name: "McThumbs", team: TeamName.Red, win: false, playedGames: [Game.HaloReach] },
             { name: "Harc", team: TeamName.Red, win: false, playedGames: [Game.Halo4] },
@@ -1184,7 +1184,7 @@ export const relayEvents: RelayEvent[] = [
             // Blue Team
             { name: "Chronos", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
             { name: "Rep", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
-            { name: "TheIncomeTaxes", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
+            { name: "Hyperloop", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
             { name: "Xero", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
             { name: "Seclusive", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
             { name: "TM0153", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
