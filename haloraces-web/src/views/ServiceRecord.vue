@@ -16,7 +16,7 @@
                     <h4>Result Summary</h4>
                     <p>Wins: {{ user.wins.length }}</p>
                     <p>Losses: {{ user.losses.length }}</p>
-                    <p>Totall Races: {{ user.numRaces.length }}</p>
+                    <p>Total Races: {{ user.numRaces.length }}</p>
                     <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.5); margin: 0.5rem 0;" />
                     <h4>Play Count Per Game</h4>
                     <p v-for="(count, game) in user.gameCount" :key="game">
