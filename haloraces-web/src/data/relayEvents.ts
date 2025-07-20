@@ -1274,4 +1274,84 @@ export const relayEvents: RelayEvent[] = [
         ],
         timeMethod: "Game Timing"
     },
+    {
+        year: 2025,
+        date: new Date("2025-07-20"),
+        difficulty: Difficulty.Easy,
+        playedGames: [
+            Game.HaloReach,
+            Game.HaloCE,
+            Game.Halo2,
+            Game.Halo3ODST,
+            Game.Halo3,
+            Game.Halo4,
+            Game.Halo5,
+            Game.HaloInfinite
+        ],
+        winningTeam: TeamName.Green,
+        teamResults: [
+            { name: TeamName.Green, time: "8:47:46" },
+            { name: TeamName.Red, time: "8:48:50" },
+            { name: TeamName.Blue, time: "8:55:27" },
+            { name: TeamName.Gold, time: "9:07:21" },
+        ],
+        playerResults: [
+            // Red Team
+            { name: "Sorix", team: TeamName.Red, win: false, playedGames: [Game.HaloReach] },
+            { name: "SlothSG", team: TeamName.Red, win: false, playedGames: [Game.HaloCE] },
+            { name: "Sleek", team: TeamName.Red, win: false, playedGames: [Game.Halo2] },
+            { name: "Bloop", team: TeamName.Red, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "yeVcM", team: TeamName.Red, win: false, playedGames: [Game.Halo3] },
+            { name: "SlateThelyon", team: TeamName.Red, win: false, playedGames: [Game.Halo4] },
+            { name: "Phobic", team: TeamName.Red, win: false, playedGames: [Game.Halo5] },
+            { name: "Alicenuga", team: TeamName.Red, win: false, playedGames: [Game.HaloInfinite] },
+
+            // Green Team (Winners)
+            { name: "Seclusive", team: TeamName.Green, win: true, playedGames: [Game.HaloReach] },
+            { name: "Fromthegrave", team: TeamName.Green, win: true, playedGames: [Game.HaloCE] },
+            { name: "Kronos716", team: TeamName.Green, win: true, playedGames: [Game.Halo2] },
+            { name: "Xero", team: TeamName.Green, win: true, playedGames: [Game.Halo3ODST] },
+            { name: "Hyperloop", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
+            { name: "Mourie", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
+            { name: "DavidSpartan95", team: TeamName.Green, win: true, playedGames: [Game.Halo5] },
+            { name: "Alicenuga", team: TeamName.Green, win: true, playedGames: [Game.HaloInfinite] },
+
+            // Blue Team
+            { name: "Two EEzy", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
+            { name: "Cambid", team: TeamName.Blue, win: false, playedGames: [Game.HaloCE] },
+            { name: "DABLL DO YA", team: TeamName.Blue, win: false, playedGames: [Game.Halo2] },
+            { name: "Trouble", team: TeamName.Blue, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Alextremo08", team: TeamName.Blue, win: false, playedGames: [Game.Halo3] },
+            { name: "Jon and Pon", team: TeamName.Blue, win: false, playedGames: [Game.Halo4] },
+            { name: "BatChat", team: TeamName.Blue, win: false, playedGames: [Game.Halo5] },
+            { name: "Lorhey", team: TeamName.Blue, win: false, playedGames: [Game.HaloInfinite] },
+
+            // Gold Team
+            { name: "Chronos", team: TeamName.Gold, win: false, playedGames: [Game.HaloReach] },
+            { name: "Shiv", team: TeamName.Gold, win: false, playedGames: [Game.HaloCE] },
+            { name: "Maxlew", team: TeamName.Gold, win: false, playedGames: [Game.Halo2] },
+            { name: "Cylles", team: TeamName.Gold, win: false, playedGames: [Game.Halo3ODST] },
+            { name: "Zoo", team: TeamName.Gold, win: false, playedGames: [Game.Halo3] },
+            { name: "Harc", team: TeamName.Gold, win: false, playedGames: [Game.Halo4] },
+            { name: "Tranqylity", team: TeamName.Gold, win: false, playedGames: [Game.Halo5] },
+            { name: "Dyse", team: TeamName.Gold, win: false, playedGames: [Game.HaloInfinite] },
+        ],
+        source: [{
+            name: "HaloRuns 2025 Easy Relay Race",
+            type: TypeOfSource.Video,
+            link: new URL("https://www.twitch.tv/videos/2516659442")
+        },
+        {
+            name: "Fantasy League",
+            type: TypeOfSource.Exel,
+            link: new URL("https://docs.google.com/spreadsheets/d/1KDbMXjhqh-qlSDtMSI9IatZbBcVhb69ndbBTGdyI5YQ/edit?gid=987102489")
+        },
+        {
+            name: "Detailed Results",
+            type: TypeOfSource.Image,
+            link: new URL("https://imgur.com/a/puKKOqA")
+        }
+        ],
+        timeMethod: "Game Timing"
+    }
 ]

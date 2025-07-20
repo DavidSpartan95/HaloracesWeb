@@ -38,12 +38,10 @@
 import {computed } from 'vue';
 import { TeamName, relayEvents } from '../data/relayEvents';
 
-// Step 1: Get all team names you want to count
-const allTeams = Object.values(TeamName);
+const customOrder = [TeamName.Red, TeamName.Green, TeamName.Blue, TeamName.Gold];
 
-// Step 2: Count wins for each team
 const teamWins = computed(() =>
-  allTeams.map(name => {
+  customOrder.map(name => {
     const wins = relayEvents.filter(event => event.winningTeam === name).length;
     return {
       name,
@@ -70,7 +68,7 @@ function getTeamColor(team: TeamName): string {
     case TeamName.Green:
       return 'green';
     case TeamName.Gold:
-      return 'goldenrod';
+      return 'gold';
     default:
       return 'gray';
   }
