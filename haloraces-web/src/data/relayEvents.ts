@@ -1314,7 +1314,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Hyperloop", team: TeamName.Green, win: true, playedGames: [Game.Halo3] },
             { name: "Mourie", team: TeamName.Green, win: true, playedGames: [Game.Halo4] },
             { name: "DavidSpartan95", team: TeamName.Green, win: true, playedGames: [Game.Halo5] },
-            { name: "Alicenuga", team: TeamName.Green, win: true, playedGames: [Game.HaloInfinite] },
+            { name: "Caitlin", team: TeamName.Green, win: true, playedGames: [Game.HaloInfinite] },
 
             // Blue Team
             { name: "Two EEzy", team: TeamName.Blue, win: false, playedGames: [Game.HaloReach] },
