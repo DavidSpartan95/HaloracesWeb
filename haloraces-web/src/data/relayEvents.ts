@@ -1339,7 +1339,12 @@ export const relayEvents: RelayEvent[] = [
         source: [{
             name: "HaloRuns 2025 Easy Relay Race",
             type: TypeOfSource.Video,
-            link: new URL("https://www.twitch.tv/videos/2516659442")
+            link: new URL("https://drive.google.com/file/d/1WvPd7es-8ZO1ohiJBxvDH7j9MsQs-MS9/view")
+        },
+        {
+            name: "2025 Haloruns Relay Race Awards",
+            type: TypeOfSource.Video,
+            link: new URL("https://www.youtube.com/watch?v=m51R6T5OmtM")
         },
         {
             name: "Fantasy League",
