@@ -997,10 +997,10 @@ export const relayEvents: RelayEvent[] = [
             type: TypeOfSource.Video,
             link: new URL("https://www.youtube.com/watch?v=O-EUQ3dN7Uw")
         },
-        {
+        {/*  */
             name: "HaloRuns Legendary Relay Race 2022 (Part 2/2)",
             type: TypeOfSource.Video,
-            link: new URL("https://www.youtube.com/watch?v=DAMjxQwJ_4I")
+            link: new URL("https://www.youtube.com/watch?v=4ADd2FLUomU")
         },
         {
             name: "Spreadsheet",
