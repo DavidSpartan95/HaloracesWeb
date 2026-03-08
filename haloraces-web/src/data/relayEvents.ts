@@ -1368,8 +1368,8 @@ export const relayEvents: RelayEvent[] = [
             Game.HaloCE,
             Game.Halo2,
             Game.Halo3,
-            Game.HaloReach,
             Game.Halo3ODST,
+            Game.HaloReach,
             Game.Halo4,
             Game.Halo5,
             Game.HaloInfinite
@@ -1431,8 +1431,8 @@ export const relayEvents: RelayEvent[] = [
         playedGames: [
             Game.HaloCE,
             Game.Halo2,
-            Game.HaloReach,
             Game.Halo3ODST,
+            Game.HaloReach,
             Game.Halo4,
             Game.Halo5,
         ],
