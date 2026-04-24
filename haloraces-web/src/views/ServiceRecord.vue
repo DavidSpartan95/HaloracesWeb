@@ -61,7 +61,8 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
+                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
+                                }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
                             </p>
                         </router-link>
                     </div>
@@ -118,7 +119,8 @@
                                         month: 'short',
                                         day: '2-digit'
                                     }).replace(/(\w+) (\d+), (\d+)/, '$3 $1 $2')
-                                }} - {{ game.difficulty }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
+                                }} - {{ game.difficulty }} - {{ gamesPlayedAtRaceAsString(user.name, game.playerResults)
+                                }} - <span> {{ getUserTeamInEvent(user.name, game) }} </span>
                             </p>
                         </router-link>
                     </div>
