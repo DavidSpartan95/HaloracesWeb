@@ -163,9 +163,21 @@ function formatDateForId(date: string | Date) {
     return d.toISOString().slice(0, 10);
 }
 
-function getUserTeamInEvent(username: string, event: RelayEvent): string  {
-    const player = event.playerResults.find(p => p.name.toLowerCase() === username.toLowerCase())
-    return player ? player.team.toString() : "Not found"
+function getUserTeamInEvent(username: string, event: RelayEvent): string {
+    const player = event.playerResults.find(p =>
+        playerResultContainsUser(p.name, username)
+    );
+
+    return player ? player.team : "Not found";
+}
+
+function playerResultContainsUser(
+    playerName: string,
+    username: string
+): boolean {
+    return playerName
+        .split("&")
+        .some(name => name.trim().toLowerCase() === username.toLowerCase());
 }
 
 function gamesPlayedAtRaceAsString(
