@@ -64,10 +64,9 @@ function generateUserStats(relayEvents: RelayEvent[]): User[] {
                 }
 
                 // 5) Only add a team once per event
-                if (!userEventTeams[eventKey].has(team)) {
-                    userEventTeams[eventKey].add(team);
+                
                     u.teams.push(team);
-                }
+                
             });
         });
     });

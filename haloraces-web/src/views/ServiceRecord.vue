@@ -164,11 +164,17 @@ function formatDateForId(date: string | Date) {
 }
 
 function getUserTeamInEvent(username: string, event: RelayEvent): string {
-    const player = event.playerResults.find(p =>
+    const entries = event.playerResults.filter(p =>
         playerResultContainsUser(p.name, username)
     );
 
-    return player ? player.team : "Not found";
+    if (entries.length === 0) return "Not found";
+
+    const teams = entries.map(e => e.team);
+
+    const uniqueTeams = Array.from(new Set(teams));
+
+    return uniqueTeams.join(', ');
 }
 
 function playerResultContainsUser(
