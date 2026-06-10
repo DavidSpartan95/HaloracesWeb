@@ -1541,7 +1541,7 @@ export const relayEvents: RelayEvent[] = [
         source: [{
             name: "HaloRuns 2026 Easy",
             type: TypeOfSource.Video,
-            link: new URL("https://www.twitch.tv/videos/2790880311")
+            link: new URL("https://www.twitch.tv/videos/2793460478")
         }
         ],
         timeMethod: "Game Timing"
