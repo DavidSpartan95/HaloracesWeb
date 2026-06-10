@@ -87,7 +87,8 @@ function sortTeamResults(results: TeamResult[]): TeamResult[] {
     [TeamName.Red]: 0,
     [TeamName.Blue]: 1,
     [TeamName.Green]: 2,
-    [TeamName.Gold]: 3
+    [TeamName.Gold]: 3,
+    [TeamName.Purple]: 4,
   };
 
   return results.sort((a, b) => {
@@ -142,7 +143,8 @@ function sortPlayerResults(results: PlayerResult[]): PlayerResult[] {
     [TeamName.Red]: 0,
     [TeamName.Blue]: 1,
     [TeamName.Green]: 2,
-    [TeamName.Gold]: 3
+    [TeamName.Gold]: 3,
+    [TeamName.Purple]: 4
   };
 
   return results.sort((a, b) => {

@@ -35,6 +35,9 @@
                     <p>
                         Gold Team: {{ countTeamAppearances(user.teams, TeamName.Gold) }}
                     </p>
+                    <p>
+                        Purple Team: {{ countTeamAppearances(user.teams, TeamName.Purple) }}
+                    </p>
                 </div>
             </div>
 
