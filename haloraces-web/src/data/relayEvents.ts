@@ -1389,7 +1389,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Waifu", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
             { name: "Cylles", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
             { name: "SlothSG", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
-            { name: "Meeooh", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
+            { name: "Meedoh", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "Voltroneon", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
 
             // Green Team
@@ -1505,7 +1505,7 @@ export const relayEvents: RelayEvent[] = [
             { name: "Seclusive", team: TeamName.Red, win: true, playedGames: [Game.HaloReach] },
             { name: "Rhylum", team: TeamName.Red, win: true, playedGames: [Game.Halo3ODST] },
             { name: "Alextremo08", team: TeamName.Red, win: true, playedGames: [Game.Halo3] },
-            { name: "Meeooh", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
+            { name: "Meedoh", team: TeamName.Red, win: true, playedGames: [Game.Halo2] },
             { name: "Sub_Whistle", team: TeamName.Red, win: true, playedGames: [Game.HaloCE] },
 
             // Green Team
@@ -1542,7 +1542,12 @@ export const relayEvents: RelayEvent[] = [
             name: "HaloRuns 2026 Easy",
             type: TypeOfSource.Video,
             link: new URL("https://www.twitch.tv/videos/2793460478")
-        }
+        },
+        {
+            name: "Fantasy Sheet 2026",
+            type: TypeOfSource.Exel,
+            link: new URL("https://docs.google.com/spreadsheets/d/1Lna2fjtnxIqvQfkXqfx2pDiwgCMdLxeyXD79nF3izGw/edit?pli=1&gid=1994966047#gid=1994966047")
+        },
         ],
         timeMethod: "Game Timing"
     }
