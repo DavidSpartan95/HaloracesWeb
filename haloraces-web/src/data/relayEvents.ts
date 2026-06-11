@@ -64,7 +64,7 @@ export interface Source {
 export const relayEvents: RelayEvent[] = [
     {
         year: 2014,
-        date: new Date("2014-11-22"),
+        date: new Date("2014-11-22T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [Game.HaloCE, Game.Halo2, Game.Halo3],
         winningTeam: TeamName.Green,
@@ -125,7 +125,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2015,
-        date: new Date("2015-10-25"),
+        date: new Date("2015-10-25T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [Game.HaloReach, Game.HaloCE, Game.Halo2, Game.Halo3, Game.Halo3ODST, Game.Halo4],
         winningTeam: TeamName.Blue,
@@ -270,7 +270,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2016,
-        date: new Date("2016-10-29"),
+        date: new Date("2016-10-29T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloReach,
@@ -339,7 +339,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2017,
-        date: new Date("2017-11-05"),
+        date: new Date("2017-11-05T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloReach,
@@ -413,7 +413,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2018,
-        date: new Date("2018-12-01"),
+        date: new Date("2018-12-01T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloReach,
@@ -487,7 +487,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2019,
-        date: new Date("2019-10-12"),
+        date: new Date("2019-10-12T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloReach,
@@ -556,7 +556,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2020,
-        date: new Date("2020-01-04"),
+        date: new Date("2020-01-04T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.HaloCE,
@@ -609,7 +609,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2020,
-        date: new Date("2020-06-28"),
+        date: new Date("2020-06-28T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
@@ -674,7 +674,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2021,
-        date: new Date("2021-01-09"),
+        date: new Date("2021-01-09T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.HaloCE,
@@ -733,7 +733,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2021,
-        date: new Date("2021-06-05"),
+        date: new Date("2021-06-05T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
@@ -816,7 +816,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2021,
-        date: new Date("2021-11-27"),
+        date: new Date("2021-11-27T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.HaloCE,
@@ -870,7 +870,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2022,
-        date: new Date("2022-06-25"),
+        date: new Date("2022-06-25T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
@@ -945,7 +945,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2022,
-        date: new Date("2022-12-03"),
+        date: new Date("2022-12-03T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.HaloCE,
@@ -1014,7 +1014,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2023,
-        date: new Date("2023-07-01"),
+        date: new Date("2023-07-01T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
@@ -1083,7 +1083,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2023,
-        date: new Date("2023-11-18"),
+        date: new Date("2023-11-18T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.HaloInfinite,
@@ -1144,7 +1144,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2024,
-        date: new Date("2024-07-13"),
+        date: new Date("2024-07-13T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
@@ -1213,7 +1213,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2024,
-        date: new Date("2024-12-07"),
+        date: new Date("2024-12-07T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.Halo5,
@@ -1278,7 +1278,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2025,
-        date: new Date("2025-07-20"),
+        date: new Date("2025-07-20T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloReach,
@@ -1363,7 +1363,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2025,
-        date: new Date("2025-11-16"),
+        date: new Date("2025-11-16T14:00:00Z"),
         difficulty: Difficulty.Legendary,
         playedGames: [
             Game.HaloCE,
@@ -1427,7 +1427,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2026,
-        date: new Date("2026-03-09"),
+        date: new Date("2026-03-09T14:00:00Z"),
         difficulty: Difficulty.LASO,
         playedGames: [
             Game.HaloCE,
@@ -1478,7 +1478,7 @@ export const relayEvents: RelayEvent[] = [
     },
     {
         year: 2026,
-        date: new Date("2026-06-07"),
+        date: new Date("2026-06-07T14:00:00Z"),
         difficulty: Difficulty.Easy,
         playedGames: [
             Game.HaloCE,
